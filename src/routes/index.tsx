@@ -377,7 +377,7 @@ function Testimonial() {
 const tiers = [
   {
     name: "Free Forever",
-    price: "$0",
+    price: "₹0",
     per: "",
     tagline: "Full audit trail from day one.",
     features: ["1 user", "10 documents / month", "3 templates", "Geo + photo capture", "Email support"],
@@ -387,7 +387,7 @@ const tiers = [
   },
   {
     name: "Starter",
-    price: "$8",
+    price: "₹699",
     per: "/mo",
     tagline: "For small teams starting to standardize.",
     features: ["Up to 3 users", "Unlimited documents", "5 templates", "Reminders", "Basic audit trail"],
@@ -397,7 +397,7 @@ const tiers = [
   },
   {
     name: "Business",
-    price: "$18",
+    price: "₹1,499",
     per: "/mo",
     tagline: "Full audit trail, team management, API.",
     features: [
