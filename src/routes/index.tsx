@@ -230,24 +230,7 @@ function Hero() {
 
         {/* Video / product frame */}
         <Reveal delay={0.25}>
-          <div className="relative mx-auto mt-16 aspect-video max-w-5xl overflow-hidden rounded-3xl border border-border bg-surface ring-signal">
-            <div className="absolute inset-0 grid place-items-center">
-              {/* Replace this block with your <video src="..." /> when the 33MB file is uploaded */}
-              <button
-                type="button"
-                className="group flex flex-col items-center gap-4"
-                aria-label="Play product walkthrough"
-              >
-                <span className="grid h-20 w-20 place-items-center rounded-full bg-signal text-signal-foreground shadow-[0_0_60px_-10px_var(--signal)] transition-transform group-hover:scale-110">
-                  <Play className="h-8 w-8 translate-x-0.5" />
-                </span>
-                <span className="text-sm text-muted-foreground">
-                  Watch the 2-minute walkthrough
-                </span>
-              </button>
-            </div>
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
-          </div>
+          <HeroVideo />
         </Reveal>
       </div>
     </section>
