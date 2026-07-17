@@ -19,9 +19,12 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import videoPoster from "@/assets/video-poster.jpg";
+import logoAsset from "@/assets/esignright-logo.png.asset.json";
 
 const VIDEO_BUCKET = "videobucket";
 const VIDEO_PATH = "eSignRight_HandsON.mp4";
+// TODO: replace with the actual unlisted YouTube URL from Marketing
+const YOUTUBE_FALLBACK_URL = "https://youtube.com/";
 
 function HeroVideo() {
   const [playing, setPlaying] = useState(false);
