@@ -53,55 +53,71 @@ function HeroVideo() {
   }, [playing, url]);
 
   return (
-    <div className="relative mx-auto mt-16 aspect-video max-w-5xl overflow-hidden rounded-3xl border border-border bg-surface ring-signal">
-      {/* Blurred poster stays behind the video */}
-      <img
-        src={videoPoster}
-        alt="Product walkthrough preview"
-        className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ${
-          playing ? "scale-105 opacity-0" : "scale-110 blur-xl opacity-90"
-        }`}
-        aria-hidden={playing}
-      />
-      <div
-        className={`absolute inset-0 bg-background/40 transition-opacity duration-500 ${
-          playing ? "opacity-0" : "opacity-100"
-        }`}
-      />
-
-      {url && (
-        <video
-          ref={videoRef}
-          src={url}
-          controls
-          playsInline
-          preload="none"
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
-            playing ? "opacity-100" : "opacity-0 pointer-events-none"
+    <div className="mx-auto mt-16 max-w-5xl">
+      <div className="relative aspect-video overflow-hidden rounded-3xl border border-border bg-surface ring-signal">
+        {/* Blurred poster stays behind the video */}
+        <img
+          src={videoPoster}
+          alt="Product walkthrough preview"
+          className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ${
+            playing ? "scale-105 opacity-0" : "scale-110 blur-xl opacity-90"
+          }`}
+          aria-hidden={playing}
+        />
+        <div
+          className={`absolute inset-0 bg-background/40 transition-opacity duration-500 ${
+            playing ? "opacity-0" : "opacity-100"
           }`}
         />
-      )}
 
-      {!playing && (
-        <div className="absolute inset-0 grid place-items-center">
-          <button
-            type="button"
-            onClick={handlePlay}
-            disabled={loading}
-            className="group flex flex-col items-center gap-4"
-            aria-label="Play product walkthrough"
-          >
-            <span className="grid h-20 w-20 place-items-center rounded-full bg-signal text-signal-foreground shadow-[0_0_60px_-10px_var(--signal)] transition-transform group-hover:scale-110">
-              <Play className="h-8 w-8 translate-x-0.5" />
-            </span>
-            <span className="text-sm text-muted-foreground">
-              {loading ? "Loading video…" : "Watch the 2-minute walkthrough"}
-            </span>
-          </button>
-        </div>
-      )}
+        {url && (
+          <video
+            ref={videoRef}
+            src={url}
+            controls
+            playsInline
+            preload="none"
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+              playing ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
+          />
+        )}
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
+        {!playing && (
+          <div className="absolute inset-0 grid place-items-center">
+            <button
+              type="button"
+              onClick={handlePlay}
+              disabled={loading}
+              className="group flex flex-col items-center gap-4"
+              aria-label="Play product walkthrough"
+            >
+              <span className="grid h-20 w-20 place-items-center rounded-full bg-signal text-signal-foreground shadow-[0_0_60px_-10px_var(--signal)] transition-transform group-hover:scale-110">
+                <Play className="h-8 w-8 translate-x-0.5" />
+              </span>
+              <span className="text-sm text-muted-foreground">
+                {loading ? "Loading video…" : "Watch the 2-minute walkthrough"}
+              </span>
+            </button>
+          </div>
+        )}
+
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
+      </div>
+
+      {/* YouTube backup link */}
+      <div className="mt-3 flex items-center justify-center gap-2 text-xs text-muted-foreground">
+        <span>Video not loading?</span>
+        <a
+          href={YOUTUBE_FALLBACK_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 font-medium text-signal underline-offset-4 hover:underline"
+        >
+          Watch on YouTube
+          <ArrowRight className="h-3 w-3" />
+        </a>
+      </div>
     </div>
   );
 }
