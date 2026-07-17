@@ -180,13 +180,12 @@ function Nav() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="#" className="flex items-center gap-2">
-          <div className="grid h-8 w-8 place-items-center rounded-lg bg-signal text-signal-foreground">
-            <FileSignature className="h-4 w-4" />
-          </div>
-          <span className="font-display text-lg font-semibold tracking-tight">
-            eSign<span className="text-signal">Right</span>
-          </span>
+        <a href="#" className="flex items-center gap-2" aria-label="eSignRight home">
+          <img
+            src={logoAsset.url}
+            alt="eSignRight"
+            className="h-8 w-auto brightness-0 invert"
+          />
         </a>
         <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
           <a href="#features" className="hover:text-foreground">Features</a>
