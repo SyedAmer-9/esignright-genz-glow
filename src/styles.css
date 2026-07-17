@@ -57,12 +57,12 @@
   --popover: oklch(0.20 0.018 260);
   --popover-foreground: oklch(0.97 0.005 260);
 
-  /* Electric lime signal */
-  --signal: oklch(0.90 0.22 130);
-  --signal-foreground: oklch(0.15 0.02 260);
+  /* Electric blue signal */
+  --signal: oklch(0.68 0.19 250);
+  --signal-foreground: oklch(0.98 0.005 260);
 
-  --primary: oklch(0.90 0.22 130);
-  --primary-foreground: oklch(0.15 0.02 260);
+  --primary: oklch(0.68 0.19 250);
+  --primary-foreground: oklch(0.98 0.005 260);
 
   --secondary: oklch(0.28 0.022 260);
   --secondary-foreground: oklch(0.97 0.005 260);
@@ -78,7 +78,7 @@
 
   --border: oklch(1 0 0 / 8%);
   --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.90 0.22 130);
+  --ring: oklch(0.68 0.19 250);
 }
 
 .dark {
@@ -115,16 +115,16 @@
 }
 
 @utility bg-glow-signal {
-  background: radial-gradient(60% 60% at 50% 0%, oklch(0.90 0.22 130 / 0.18) 0%, transparent 70%);
+  background: radial-gradient(60% 60% at 50% 0%, oklch(0.68 0.19 250 / 0.22) 0%, transparent 70%);
 }
 
 @utility text-gradient-signal {
-  background: linear-gradient(135deg, oklch(0.97 0.005 260) 0%, oklch(0.90 0.22 130) 100%);
+  background: linear-gradient(135deg, oklch(0.97 0.005 260) 0%, oklch(0.68 0.19 250) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 @utility ring-signal {
-  box-shadow: 0 0 0 1px oklch(0.90 0.22 130 / 0.4), 0 0 40px -8px oklch(0.90 0.22 130 / 0.35);
+  box-shadow: 0 0 0 1px oklch(0.68 0.19 250 / 0.4), 0 0 40px -8px oklch(0.68 0.19 250 / 0.35);
 }
