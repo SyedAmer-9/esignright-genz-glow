@@ -126,5 +126,5 @@
 }
 
 @utility ring-signal {
-  box-shadow: 0 0 0 1px oklch(0.90 0.22 130 / 0.4), 0 0 40px -8px oklch(0.90 0.22 130 / 0.35);
+  box-shadow: 0 0 0 1px oklch(0.68 0.19 250 / 0.4), 0 0 40px -8px oklch(0.68 0.19 250 / 0.35);
 }
