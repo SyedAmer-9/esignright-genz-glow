@@ -696,12 +696,11 @@ function Footer() {
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2">
-              <div className="grid h-8 w-8 place-items-center rounded-lg bg-signal text-signal-foreground">
-                <FileSignature className="h-4 w-4" />
-              </div>
-              <span className="font-display text-lg font-semibold">
-                eSign<span className="text-signal">Right</span>
-              </span>
+              <img
+                src={logoAsset.url}
+                alt="eSignRight"
+                className="h-8 w-auto brightness-0 invert"
+              />
             </div>
             <p className="mt-4 max-w-sm text-sm text-muted-foreground">
               Secure, auditable e-signatures for modern businesses. Every signature logged with
