@@ -115,11 +115,11 @@
 }
 
 @utility bg-glow-signal {
-  background: radial-gradient(60% 60% at 50% 0%, oklch(0.90 0.22 130 / 0.18) 0%, transparent 70%);
+  background: radial-gradient(60% 60% at 50% 0%, oklch(0.68 0.19 250 / 0.22) 0%, transparent 70%);
 }
 
 @utility text-gradient-signal {
-  background: linear-gradient(135deg, oklch(0.97 0.005 260) 0%, oklch(0.90 0.22 130) 100%);
+  background: linear-gradient(135deg, oklch(0.97 0.005 260) 0%, oklch(0.68 0.19 250) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
