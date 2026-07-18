@@ -476,7 +476,8 @@ const tiers = [
     tagline: "Full audit trail from day one.",
     features: ["1 user", "10 documents / month", "3 templates", "Geo + photo capture", "Email support"],
     cta: "Start free",
-    href: "#signup",
+    href: SIGNUP_URL,
+    external: false,
     highlight: false,
   },
   {
@@ -486,7 +487,8 @@ const tiers = [
     tagline: "For small teams starting to standardize.",
     features: ["Up to 3 users", "Unlimited documents", "5 templates", "Reminders", "Basic audit trail"],
     cta: "Start free trial",
-    href: "#signup",
+    href: SIGNUP_URL,
+    external: false,
     highlight: false,
   },
   {
@@ -503,7 +505,8 @@ const tiers = [
       "Priority support",
     ],
     cta: "Schedule a demo",
-    href: "#demo",
+    href: CALENDAR_URL,
+    external: true,
     highlight: true,
   },
   {
@@ -520,6 +523,7 @@ const tiers = [
     ],
     cta: "Talk to sales",
     href: "#demo",
+    external: false,
     highlight: false,
   },
 ];
