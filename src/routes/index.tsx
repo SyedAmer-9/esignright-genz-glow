@@ -25,6 +25,8 @@ const VIDEO_BUCKET = "videobucket";
 const VIDEO_PATH = "eSignRight_HandsON.mp4";
 // TODO: replace with the actual unlisted YouTube URL from Marketing
 const YOUTUBE_FALLBACK_URL = "https://youtube.com/";
+const SIGNUP_URL = "https://app.esignright.com/account/signup";
+const CALENDAR_URL = "https://calendly.com/esignright/30min";
 
 function HeroVideo() {
   const [playing, setPlaying] = useState(false);
