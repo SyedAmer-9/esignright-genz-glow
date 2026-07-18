@@ -242,8 +242,8 @@ function Hero() {
         </Reveal>
         <Reveal delay={0.15}>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <PrimaryCTA href="#demo">Schedule a Demo</PrimaryCTA>
-            <GhostCTA href="#signup">
+            <PrimaryCTA href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">Schedule a Demo</PrimaryCTA>
+            <GhostCTA href={SIGNUP_URL}>
               <Sparkles className="h-4 w-4 text-signal" /> Sign up free
             </GhostCTA>
           </div>
