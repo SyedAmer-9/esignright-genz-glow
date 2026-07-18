@@ -25,6 +25,8 @@ const VIDEO_BUCKET = "videobucket";
 const VIDEO_PATH = "eSignRight_HandsON.mp4";
 // TODO: replace with the actual unlisted YouTube URL from Marketing
 const YOUTUBE_FALLBACK_URL = "https://youtube.com/";
+const SIGNUP_URL = "https://app.esignright.com/account/signup";
+const CALENDAR_URL = "https://calendly.com/esignright/30min";
 
 function HeroVideo() {
   const [playing, setPlaying] = useState(false);
@@ -151,10 +153,12 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-function PrimaryCTA({ children, href = "#demo" }: { children: React.ReactNode; href?: string }) {
+function PrimaryCTA({ children, href = "#demo", target, rel }: { children: React.ReactNode; href?: string; target?: string; rel?: string }) {
   return (
     <a
       href={href}
+      target={target}
+      rel={rel}
       className="group relative inline-flex items-center gap-2 rounded-full bg-signal px-6 py-3 text-sm font-semibold text-signal-foreground transition-all hover:scale-[1.02] hover:shadow-[0_0_40px_-8px_var(--signal)] active:scale-[0.98]"
     >
       {children}
@@ -163,10 +167,12 @@ function PrimaryCTA({ children, href = "#demo" }: { children: React.ReactNode; h
   );
 }
 
-function GhostCTA({ children, href = "#signup" }: { children: React.ReactNode; href?: string }) {
+function GhostCTA({ children, href = "#signup", target, rel }: { children: React.ReactNode; href?: string; target?: string; rel?: string }) {
   return (
     <a
       href={href}
+      target={target}
+      rel={rel}
       className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/50 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur transition-all hover:border-signal/40 hover:bg-surface"
     >
       {children}
@@ -194,11 +200,13 @@ function Nav() {
           <a href="#faq" className="hover:text-foreground">FAQ</a>
         </nav>
         <div className="flex items-center gap-2">
-          <a href="#signup" className="hidden text-sm font-medium text-muted-foreground hover:text-foreground sm:inline">
+          <a href={SIGNUP_URL} className="hidden text-sm font-medium text-muted-foreground hover:text-foreground sm:inline">
             Sign up
           </a>
           <a
-            href="#demo"
+            href={CALENDAR_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 rounded-full bg-signal px-4 py-2 text-sm font-semibold text-signal-foreground transition-all hover:shadow-[0_0_24px_-6px_var(--signal)]"
           >
             Schedule a Demo
@@ -234,8 +242,8 @@ function Hero() {
         </Reveal>
         <Reveal delay={0.15}>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <PrimaryCTA href="#demo">Schedule a Demo</PrimaryCTA>
-            <GhostCTA href="#signup">
+            <PrimaryCTA href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">Schedule a Demo</PrimaryCTA>
+            <GhostCTA href={SIGNUP_URL}>
               <Sparkles className="h-4 w-4 text-signal" /> Sign up free
             </GhostCTA>
           </div>
@@ -468,7 +476,8 @@ const tiers = [
     tagline: "Full audit trail from day one.",
     features: ["1 user", "10 documents / month", "3 templates", "Geo + photo capture", "Email support"],
     cta: "Start free",
-    href: "#signup",
+    href: SIGNUP_URL,
+    external: false,
     highlight: false,
   },
   {
@@ -478,7 +487,8 @@ const tiers = [
     tagline: "For small teams starting to standardize.",
     features: ["Up to 3 users", "Unlimited documents", "5 templates", "Reminders", "Basic audit trail"],
     cta: "Start free trial",
-    href: "#signup",
+    href: SIGNUP_URL,
+    external: false,
     highlight: false,
   },
   {
@@ -495,7 +505,8 @@ const tiers = [
       "Priority support",
     ],
     cta: "Schedule a demo",
-    href: "#demo",
+    href: CALENDAR_URL,
+    external: true,
     highlight: true,
   },
   {
@@ -512,6 +523,7 @@ const tiers = [
     ],
     cta: "Talk to sales",
     href: "#demo",
+    external: false,
     highlight: false,
   },
 ];
@@ -569,6 +581,8 @@ function Pricing() {
                 </ul>
                 <a
                   href={t.href}
+                  target={t.external ? "_blank" : undefined}
+                  rel={t.external ? "noopener noreferrer" : undefined}
                   className={`mt-8 inline-flex w-full items-center justify-center rounded-full px-4 py-2.5 text-sm font-semibold transition-all ${
                     t.highlight
                       ? "bg-signal text-signal-foreground hover:shadow-[0_0_30px_-8px_var(--signal)]"
@@ -676,8 +690,8 @@ function ClosingCTA() {
                 if that's the proof your business needs.
               </p>
               <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-                <PrimaryCTA href="#demo">Schedule a Demo</PrimaryCTA>
-                <GhostCTA href="#signup">Sign up free</GhostCTA>
+                <PrimaryCTA href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">Schedule a Demo</PrimaryCTA>
+                <GhostCTA href={SIGNUP_URL}>Sign up free</GhostCTA>
               </div>
             </div>
           </div>
