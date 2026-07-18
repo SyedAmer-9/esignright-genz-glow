@@ -153,10 +153,12 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-function PrimaryCTA({ children, href = "#demo" }: { children: React.ReactNode; href?: string }) {
+function PrimaryCTA({ children, href = "#demo", target, rel }: { children: React.ReactNode; href?: string; target?: string; rel?: string }) {
   return (
     <a
       href={href}
+      target={target}
+      rel={rel}
       className="group relative inline-flex items-center gap-2 rounded-full bg-signal px-6 py-3 text-sm font-semibold text-signal-foreground transition-all hover:scale-[1.02] hover:shadow-[0_0_40px_-8px_var(--signal)] active:scale-[0.98]"
     >
       {children}
@@ -165,10 +167,12 @@ function PrimaryCTA({ children, href = "#demo" }: { children: React.ReactNode; h
   );
 }
 
-function GhostCTA({ children, href = "#signup" }: { children: React.ReactNode; href?: string }) {
+function GhostCTA({ children, href = "#signup", target, rel }: { children: React.ReactNode; href?: string; target?: string; rel?: string }) {
   return (
     <a
       href={href}
+      target={target}
+      rel={rel}
       className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/50 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur transition-all hover:border-signal/40 hover:bg-surface"
     >
       {children}
