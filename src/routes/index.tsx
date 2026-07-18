@@ -682,12 +682,12 @@ function ClosingCTA() {
       <div className="mx-auto max-w-5xl px-6">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl border border-signal/30 bg-gradient-to-br from-surface to-background p-10 text-center md:p-16">
-            <div className="absolute inset-0 bg-glow-signal" />
             <div className="relative">
               <h2 className="text-4xl font-semibold leading-tight md:text-6xl">
                 See the audit trail{" "}
-                <span className="text-gradient-signal italic">for yourself</span>.
+                <span className="text-signal italic">for yourself</span>.
               </h2>
+
               <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
                 Sign a real document in the next 5 minutes. Look at exactly what gets logged. Decide
                 if that's the proof your business needs.
