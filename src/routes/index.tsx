@@ -174,12 +174,13 @@ function GhostCTA({ children, href = "#signup", target, rel }: { children: React
       href={href}
       target={target}
       rel={rel}
-      className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/50 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur transition-all hover:border-signal/40 hover:bg-surface"
+      className="inline-flex items-center gap-2 rounded-md border border-border bg-surface px-6 py-3 text-sm font-semibold text-foreground transition-all hover:border-signal/40 hover:bg-surface-2"
     >
       {children}
     </a>
   );
 }
+
 
 // ---------- Nav ----------
 
