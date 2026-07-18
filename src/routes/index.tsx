@@ -370,10 +370,9 @@ function Features() {
         <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => (
             <Reveal key={f.title} delay={i * 0.05}>
-              <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-surface p-6 transition-all hover:border-signal/40 hover:bg-surface-2">
-                <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-signal/10 blur-3xl opacity-0 transition-opacity group-hover:opacity-100" />
+              <div className="group relative h-full overflow-hidden rounded-lg border border-border bg-surface p-6 transition-all hover:border-signal/40 hover:bg-surface-2">
                 <div className="relative">
-                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-background/60 text-signal ring-1 ring-border">
+                  <div className="grid h-11 w-11 place-items-center rounded-md bg-background/60 text-signal ring-1 ring-border">
                     <f.icon className="h-5 w-5" />
                   </div>
                   <h3 className="mt-5 text-lg font-semibold">{f.title}</h3>
@@ -381,6 +380,7 @@ function Features() {
                 </div>
               </div>
             </Reveal>
+
           ))}
         </div>
       </div>
