@@ -581,6 +581,8 @@ function Pricing() {
                 </ul>
                 <a
                   href={t.href}
+                  target={t.external ? "_blank" : undefined}
+                  rel={t.external ? "noopener noreferrer" : undefined}
                   className={`mt-8 inline-flex w-full items-center justify-center rounded-full px-4 py-2.5 text-sm font-semibold transition-all ${
                     t.highlight
                       ? "bg-signal text-signal-foreground hover:shadow-[0_0_30px_-8px_var(--signal)]"
