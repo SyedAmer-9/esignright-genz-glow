@@ -398,8 +398,8 @@ function Compliance() {
   ];
   return (
     <section id="compliance" className="relative overflow-hidden py-28">
-      <div className="absolute inset-0 bg-glow-signal opacity-60" />
       <div className="relative mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2 lg:items-center">
+
         <div>
           <Reveal>
             <SectionLabel>Legal framework</SectionLabel>
