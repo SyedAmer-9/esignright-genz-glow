@@ -690,8 +690,8 @@ function ClosingCTA() {
                 if that's the proof your business needs.
               </p>
               <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-                <PrimaryCTA href="#demo">Schedule a Demo</PrimaryCTA>
-                <GhostCTA href="#signup">Sign up free</GhostCTA>
+                <PrimaryCTA href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">Schedule a Demo</PrimaryCTA>
+                <GhostCTA href={SIGNUP_URL}>Sign up free</GhostCTA>
               </div>
             </div>
           </div>
