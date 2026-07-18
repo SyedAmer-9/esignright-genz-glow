@@ -554,12 +554,13 @@ function Pricing() {
           {tiers.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.06}>
               <div
-                className={`relative flex h-full flex-col rounded-2xl border p-6 transition-all ${
+                className={`relative flex h-full flex-col rounded-lg border p-6 transition-all ${
                   t.highlight
                     ? "border-signal/50 bg-gradient-to-b from-signal/10 to-surface ring-signal"
                     : "border-border bg-surface hover:border-signal/30"
                 }`}
               >
+
                 {t.highlight && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-signal px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-signal-foreground">
                     Most popular
