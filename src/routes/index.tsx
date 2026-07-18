@@ -641,7 +641,7 @@ function Faq() {
             Questions, answered.
           </h2>
         </Reveal>
-        <div className="mt-12 divide-y divide-border rounded-2xl border border-border bg-surface/40">
+        <div className="mt-12 divide-y divide-border rounded-lg border border-border bg-surface/40">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
