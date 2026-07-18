@@ -420,7 +420,7 @@ function Compliance() {
         <div className="space-y-3">
           {items.map((it, i) => (
             <Reveal key={it.k} delay={i * 0.08}>
-              <div className="flex gap-5 rounded-2xl border border-border bg-surface/70 p-6 backdrop-blur">
+              <div className="flex gap-5 rounded-lg border border-border bg-surface p-6">
                 <div className="shrink-0">
                   <div className="grid h-10 w-10 place-items-center rounded-lg bg-signal/10 text-signal ring-1 ring-signal/30">
                     <Check className="h-5 w-5" />
