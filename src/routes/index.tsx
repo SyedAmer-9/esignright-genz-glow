@@ -146,12 +146,13 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground backdrop-blur">
-      <span className="h-1.5 w-1.5 rounded-full bg-signal shadow-[0_0_10px_var(--signal)]" />
+    <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+      <span className="h-1.5 w-1.5 rounded-full bg-signal" />
       {children}
     </span>
   );
 }
+
 
 function PrimaryCTA({ children, href = "#demo", target, rel }: { children: React.ReactNode; href?: string; target?: string; rel?: string }) {
   return (
@@ -173,12 +174,13 @@ function GhostCTA({ children, href = "#signup", target, rel }: { children: React
       href={href}
       target={target}
       rel={rel}
-      className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/50 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur transition-all hover:border-signal/40 hover:bg-surface"
+      className="inline-flex items-center gap-2 rounded-md border border-border bg-surface px-6 py-3 text-sm font-semibold text-foreground transition-all hover:border-signal/40 hover:bg-surface-2"
     >
       {children}
     </a>
   );
 }
+
 
 // ---------- Nav ----------
 
@@ -368,10 +370,9 @@ function Features() {
         <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => (
             <Reveal key={f.title} delay={i * 0.05}>
-              <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-surface p-6 transition-all hover:border-signal/40 hover:bg-surface-2">
-                <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-signal/10 blur-3xl opacity-0 transition-opacity group-hover:opacity-100" />
+              <div className="group relative h-full overflow-hidden rounded-lg border border-border bg-surface p-6 transition-all hover:border-signal/40 hover:bg-surface-2">
                 <div className="relative">
-                  <div className="grid h-11 w-11 place-items-center rounded-xl bg-background/60 text-signal ring-1 ring-border">
+                  <div className="grid h-11 w-11 place-items-center rounded-md bg-background/60 text-signal ring-1 ring-border">
                     <f.icon className="h-5 w-5" />
                   </div>
                   <h3 className="mt-5 text-lg font-semibold">{f.title}</h3>
@@ -379,6 +380,7 @@ function Features() {
                 </div>
               </div>
             </Reveal>
+
           ))}
         </div>
       </div>
@@ -396,8 +398,8 @@ function Compliance() {
   ];
   return (
     <section id="compliance" className="relative overflow-hidden py-28">
-      <div className="absolute inset-0 bg-glow-signal opacity-60" />
       <div className="relative mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2 lg:items-center">
+
         <div>
           <Reveal>
             <SectionLabel>Legal framework</SectionLabel>
@@ -418,7 +420,7 @@ function Compliance() {
         <div className="space-y-3">
           {items.map((it, i) => (
             <Reveal key={it.k} delay={i * 0.08}>
-              <div className="flex gap-5 rounded-2xl border border-border bg-surface/70 p-6 backdrop-blur">
+              <div className="flex gap-5 rounded-lg border border-border bg-surface p-6">
                 <div className="shrink-0">
                   <div className="grid h-10 w-10 place-items-center rounded-lg bg-signal/10 text-signal ring-1 ring-signal/30">
                     <Check className="h-5 w-5" />
@@ -552,12 +554,13 @@ function Pricing() {
           {tiers.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.06}>
               <div
-                className={`relative flex h-full flex-col rounded-2xl border p-6 transition-all ${
+                className={`relative flex h-full flex-col rounded-lg border p-6 transition-all ${
                   t.highlight
                     ? "border-signal/50 bg-gradient-to-b from-signal/10 to-surface ring-signal"
                     : "border-border bg-surface hover:border-signal/30"
                 }`}
               >
+
                 {t.highlight && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-signal px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-signal-foreground">
                     Most popular
@@ -638,7 +641,7 @@ function Faq() {
             Questions, answered.
           </h2>
         </Reveal>
-        <div className="mt-12 divide-y divide-border rounded-2xl border border-border bg-surface/40">
+        <div className="mt-12 divide-y divide-border rounded-lg border border-border bg-surface/40">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
@@ -679,12 +682,12 @@ function ClosingCTA() {
       <div className="mx-auto max-w-5xl px-6">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl border border-signal/30 bg-gradient-to-br from-surface to-background p-10 text-center md:p-16">
-            <div className="absolute inset-0 bg-glow-signal" />
             <div className="relative">
               <h2 className="text-4xl font-semibold leading-tight md:text-6xl">
                 See the audit trail{" "}
-                <span className="text-gradient-signal italic">for yourself</span>.
+                <span className="text-signal italic">for yourself</span>.
               </h2>
+
               <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
                 Sign a real document in the next 5 minutes. Look at exactly what gets logged. Decide
                 if that's the proof your business needs.
