@@ -200,11 +200,13 @@ function Nav() {
           <a href="#faq" className="hover:text-foreground">FAQ</a>
         </nav>
         <div className="flex items-center gap-2">
-          <a href="#signup" className="hidden text-sm font-medium text-muted-foreground hover:text-foreground sm:inline">
+          <a href={SIGNUP_URL} className="hidden text-sm font-medium text-muted-foreground hover:text-foreground sm:inline">
             Sign up
           </a>
           <a
-            href="#demo"
+            href={CALENDAR_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 rounded-full bg-signal px-4 py-2 text-sm font-semibold text-signal-foreground transition-all hover:shadow-[0_0_24px_-6px_var(--signal)]"
           >
             Schedule a Demo
