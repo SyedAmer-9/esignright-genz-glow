@@ -94,6 +94,12 @@ function HeroVideo() {
               className="group flex flex-col items-center gap-4"
               aria-label="Play product walkthrough"
             >
+              {/* Logo watermark above the play button */}
+              <img
+                src={logoAsset.url}
+                alt="eSignRight"
+                className="h-7 w-auto brightness-0 invert opacity-90"
+              />
               <span className="grid h-20 w-20 place-items-center rounded-full bg-signal text-signal-foreground shadow-[0_0_60px_-10px_var(--signal)] transition-transform group-hover:scale-110">
                 <Play className="h-8 w-8 translate-x-0.5" />
               </span>
