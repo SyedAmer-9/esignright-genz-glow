@@ -258,7 +258,7 @@ function Hero() {
         </Reveal>
         <Reveal delay={0.2}>
           <p className="mt-6 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            Trusted by <span className="text-foreground">300+ teams</span> across North America
+            Trusted by <span className="text-foreground">300+ teams</span>
           </p>
         </Reveal>
 
