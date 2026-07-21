@@ -490,55 +490,52 @@ function Compliance() {
   ];
   return (
     <section id="compliance" className="relative overflow-hidden py-20">
-      <div className="relative mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2 lg:items-center">
-        <div>
+      <div className="relative mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2 lg:items-start">
+        <div className="space-y-6">
           <Reveal>
             <SectionLabel>Legal framework</SectionLabel>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-6 text-4xl font-semibold leading-tight md:text-5xl">
+            <h2 className="text-4xl font-semibold leading-tight md:text-5xl">
               How this holds up when it matters.
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-6 text-lg text-foreground/70">
+            <p className="text-lg text-foreground/70">
               Courts look for three things when a signature is challenged: authenticity, integrity,
               and a reliable timestamp. eSignRight's audit trail, IP, device, timestamp, optional
               photo, is built to answer exactly those questions.
             </p>
           </Reveal>
-        </div>
-        <div className="space-y-4">
-          <Reveal>
+          <Reveal delay={0.15}>
             <div className="overflow-hidden rounded-3xl border border-border bg-white shadow-sm">
               <img
                 src={auditIllustrationAsset.url}
                 alt="Audit trail with signer location and identity verification"
                 loading="lazy"
                 decoding="async"
-                className="w-full h-auto"
+                className="h-auto w-full"
               />
             </div>
           </Reveal>
-          <div className="grid gap-3 sm:grid-cols-1">
-            {items.map((it, i) => (
-              <Reveal key={it.k} delay={i * 0.06}>
-                <div className="group relative flex items-start gap-5 rounded-2xl border border-border bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-signal/40 hover:shadow-md">
-                  <div className="flex shrink-0 flex-col items-center gap-2 border-r border-border/70 pr-5">
-                    <div className="grid h-10 w-10 place-items-center rounded-xl bg-signal/10 text-signal ring-1 ring-signal/20">
-                      <Check className="h-5 w-5" />
-                    </div>
-                    <div className="font-display text-[11px] font-semibold uppercase tracking-wider text-signal">
-                      {it.k}
-                    </div>
-                  </div>
-                  <p className="pt-1 text-sm leading-relaxed text-foreground/75">{it.v}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
-
+        <div className="grid gap-3 sm:grid-cols-1">
+          {items.map((it, i) => (
+            <Reveal key={it.k} delay={i * 0.06}>
+              <div className="group relative flex items-start gap-5 rounded-2xl border border-border bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-signal/40 hover:shadow-md">
+                <div className="flex shrink-0 flex-col items-center gap-2 border-r border-border/70 pr-5">
+                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-signal/10 text-signal ring-1 ring-signal/20">
+                    <Check className="h-5 w-5" />
+                  </div>
+                  <div className="font-display text-[11px] font-semibold uppercase tracking-wider text-signal">
+                    {it.k}
+                  </div>
+                </div>
+                <p className="pt-1 text-sm leading-relaxed text-foreground/75">{it.v}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
