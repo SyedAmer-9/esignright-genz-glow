@@ -456,7 +456,7 @@ function Features() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
-            <SectionLabel>What proof looks like</SectionLabel>
+            <SectionLabel>WHAT PROOF LOOKS LIKE</SectionLabel>
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="mt-6 text-4xl font-semibold leading-tight md:text-5xl">
