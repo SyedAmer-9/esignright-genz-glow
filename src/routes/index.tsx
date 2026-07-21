@@ -134,7 +134,13 @@ function HeroVideo() {
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
+  head: () => ({
+    links: [
+      { rel: "preload", as: "image", href: videoThumbAsset.url, fetchpriority: "high" },
+    ],
+  }),
 });
+
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const reduce = useReducedMotion();
