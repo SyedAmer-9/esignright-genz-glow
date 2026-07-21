@@ -23,7 +23,6 @@ import logoAsset from "@/assets/esignright-logo.png.asset.json";
 
 const VIDEO_BUCKET = "videobucket";
 const VIDEO_PATH = "eSignRight_HandsON.mp4";
-// TODO: replace with the actual unlisted YouTube URL from Marketing
 const YOUTUBE_FALLBACK_URL = "https://youtube.com/";
 const SIGNUP_URL = "https://app.esignright.com/account/signup";
 const CALENDAR_URL = "https://calendly.com/esignright/30min";
@@ -56,8 +55,7 @@ function HeroVideo() {
 
   return (
     <div className="mx-auto mt-16 max-w-5xl">
-      <div className="relative aspect-video overflow-hidden rounded-3xl border border-border bg-surface ring-signal">
-        {/* Blurred poster stays behind the video */}
+      <div className="relative aspect-video overflow-hidden rounded-3xl bg-white ring-signal">
         <img
           src={videoPoster}
           alt="Product walkthrough preview"
@@ -67,7 +65,7 @@ function HeroVideo() {
           aria-hidden={playing}
         />
         <div
-          className={`absolute inset-0 bg-background/40 transition-opacity duration-500 ${
+          className={`absolute inset-0 bg-white/30 transition-opacity duration-500 ${
             playing ? "opacity-0" : "opacity-100"
           }`}
         />
@@ -94,26 +92,22 @@ function HeroVideo() {
               className="group flex flex-col items-center gap-4"
               aria-label="Play product walkthrough"
             >
-              {/* Logo watermark above the play button */}
               <img
                 src={logoAsset.url}
                 alt="eSignRight"
-                className="h-7 w-auto brightness-0 invert opacity-90"
+                className="h-8 w-auto opacity-95 drop-shadow"
               />
               <span className="grid h-20 w-20 place-items-center rounded-full bg-signal text-signal-foreground shadow-[0_0_60px_-10px_var(--signal)] transition-transform group-hover:scale-110">
                 <Play className="h-8 w-8 translate-x-0.5" />
               </span>
-              <span className="text-sm text-muted-foreground">
+              <span className="text-sm font-medium text-foreground/70">
                 {loading ? "Loading video…" : "Watch the 2-minute walkthrough"}
               </span>
             </button>
           </div>
         )}
-
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
       </div>
 
-      {/* YouTube backup link */}
       <div className="mt-3 flex items-center justify-center gap-2 text-xs text-muted-foreground">
         <span>Video not loading?</span>
         <a
@@ -134,8 +128,6 @@ export const Route = createFileRoute("/")({
   component: LandingPage,
 });
 
-// ---------- Small primitives ----------
-
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const reduce = useReducedMotion();
   return (
@@ -152,131 +144,175 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+    <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
       <span className="h-1.5 w-1.5 rounded-full bg-signal" />
       {children}
     </span>
   );
 }
 
-
-function PrimaryCTA({ children, href = "#demo", target, rel }: { children: React.ReactNode; href?: string; target?: string; rel?: string }) {
+/** Black pill CTA with white arrow-circle on the right — matches esignright.com "Get Started" */
+function PrimaryCTA({
+  children,
+  href = "#demo",
+  target,
+  rel,
+}: {
+  children: React.ReactNode;
+  href?: string;
+  target?: string;
+  rel?: string;
+}) {
   return (
     <a
       href={href}
       target={target}
       rel={rel}
-      className="group relative inline-flex items-center gap-2 rounded-full bg-signal px-6 py-3 text-sm font-semibold text-signal-foreground transition-all hover:scale-[1.02] hover:shadow-[0_0_40px_-8px_var(--signal)] active:scale-[0.98]"
+      className="group inline-flex items-center gap-3 rounded-full bg-primary py-1.5 pl-6 pr-1.5 text-sm font-semibold text-primary-foreground transition-all hover:scale-[1.02] active:scale-[0.98]"
     >
-      {children}
-      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+      <span>{children}</span>
+      <span className="grid h-9 w-9 place-items-center rounded-full bg-white text-primary transition-transform group-hover:translate-x-0.5">
+        <ArrowRight className="h-4 w-4" />
+      </span>
     </a>
   );
 }
 
-function GhostCTA({ children, href = "#signup", target, rel }: { children: React.ReactNode; href?: string; target?: string; rel?: string }) {
+/** Outlined pill — matches esignright.com "SIGN IN" */
+function GhostCTA({
+  children,
+  href = "#signup",
+  target,
+  rel,
+}: {
+  children: React.ReactNode;
+  href?: string;
+  target?: string;
+  rel?: string;
+}) {
   return (
     <a
       href={href}
       target={target}
       rel={rel}
-      className="inline-flex items-center gap-2 rounded-md border border-border bg-surface px-6 py-3 text-sm font-semibold text-foreground transition-all hover:border-signal/40 hover:bg-surface-2"
+      className="inline-flex items-center gap-2 rounded-full border border-primary/80 bg-transparent px-6 py-3 text-sm font-semibold uppercase tracking-wide text-primary transition-all hover:bg-primary hover:text-primary-foreground"
     >
       {children}
     </a>
   );
 }
-
-
-// ---------- Nav ----------
 
 function Nav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <a href="#" className="flex items-center gap-2" aria-label="eSignRight home">
-          <img
-            src={logoAsset.url}
-            alt="eSignRight"
-            className="h-8 w-auto brightness-0 invert"
-          />
+          <img src={logoAsset.url} alt="eSignRight" className="h-9 w-auto" />
         </a>
-        <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
-          <a href="#features" className="hover:text-foreground">Features</a>
-          <a href="#compliance" className="hover:text-foreground">Compliance</a>
-          <a href="#pricing" className="hover:text-foreground">Pricing</a>
-          <a href="#faq" className="hover:text-foreground">FAQ</a>
+        <nav className="hidden items-center gap-8 text-sm font-medium text-foreground/80 md:flex">
+          <a href="#features" className="hover:text-primary">Features</a>
+          <a href="#compliance" className="hover:text-primary">Compliance</a>
+          <a href="#pricing" className="hover:text-primary">Pricing</a>
+          <a href="#faq" className="hover:text-primary">FAQ</a>
         </nav>
-        <div className="flex items-center gap-2">
-          <a href={SIGNUP_URL} className="hidden text-sm font-medium text-muted-foreground hover:text-foreground sm:inline">
-            Sign up
-          </a>
+        <div className="flex items-center gap-3">
           <a
-            href={CALENDAR_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-full bg-signal px-4 py-2 text-sm font-semibold text-signal-foreground transition-all hover:shadow-[0_0_24px_-6px_var(--signal)]"
+            href={SIGNUP_URL}
+            className="hidden rounded-full border border-primary/80 px-5 py-2 text-xs font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary hover:text-primary-foreground sm:inline-flex"
           >
-            Schedule a Demo
+            Sign In
           </a>
+          <PrimaryCTA href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
+            Schedule a Demo
+          </PrimaryCTA>
         </div>
       </div>
     </header>
   );
 }
 
-// ---------- Hero ----------
+/** Floating glass orbs — the visual signature of esignright.com hero */
+function HeroOrbs() {
+  return (
+    <>
+      <div
+        aria-hidden
+        className="glass-orb animate-float-slow pointer-events-none absolute -left-16 top-16 h-40 w-40 rounded-full opacity-90"
+      />
+      <div
+        aria-hidden
+        className="glass-orb animate-float-slower pointer-events-none absolute left-24 top-64 h-16 w-16 rounded-full opacity-80"
+      />
+      <div
+        aria-hidden
+        className="glass-orb animate-float-slow pointer-events-none absolute right-[-4rem] top-24 h-72 w-72 rounded-full opacity-95"
+        style={{ animationDelay: "1.2s" }}
+      />
+      <div
+        aria-hidden
+        className="glass-orb animate-float-slower pointer-events-none absolute right-40 top-[22rem] h-24 w-24 rounded-full opacity-85"
+        style={{ animationDelay: "2s" }}
+      />
+      <div
+        aria-hidden
+        className="glass-orb animate-float-slow pointer-events-none absolute right-8 bottom-24 h-32 w-32 rounded-full opacity-80"
+        style={{ animationDelay: "0.6s" }}
+      />
+    </>
+  );
+}
 
 function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid opacity-40 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]" />
-      <div className="absolute inset-0 bg-glow-signal" />
+      <div className="absolute inset-x-4 top-4 bottom-0 rounded-[2.5rem] bg-hero-blue" />
       <div className="relative mx-auto max-w-7xl px-6 pt-20 pb-24 text-center md:pt-28 md:pb-32">
-        <Reveal>
-          <SectionLabel>Trust · Security · Audit Trail</SectionLabel>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h1 className="mx-auto mt-6 max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight md:text-7xl">
-            A signature you can{" "}
-            <span className="text-gradient-signal italic">actually prove</span>.
-          </h1>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
-            Every document signed on eSignRight comes with a complete audit trail — who signed, when,
-            from where, and on what device. Built for teams who need more than "they clicked yes."
-          </p>
-        </Reveal>
-        <Reveal delay={0.15}>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <PrimaryCTA href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">Schedule a Demo</PrimaryCTA>
-            <GhostCTA href={SIGNUP_URL}>
-              <Sparkles className="h-4 w-4 text-signal" /> Sign up free
-            </GhostCTA>
-          </div>
-        </Reveal>
-        <Reveal delay={0.2}>
-          <p className="mt-6 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            Trusted by <span className="text-foreground">300+ teams</span>
-          </p>
-        </Reveal>
+        <HeroOrbs />
+        <div className="relative">
+          <Reveal>
+            <SectionLabel>Trust · Security · Audit Trail</SectionLabel>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h1 className="mx-auto mt-6 max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight text-foreground md:text-7xl">
+              A signature you can{" "}
+              <span className="text-gradient-signal italic">actually prove</span>.
+            </h1>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-foreground/70 md:text-xl">
+              Every document signed on eSignRight comes with a complete audit trail — who signed, when,
+              from where, and on what device. Built for teams who need more than "they clicked yes."
+            </p>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+              <PrimaryCTA href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
+                Schedule a Demo
+              </PrimaryCTA>
+              <GhostCTA href={SIGNUP_URL}>
+                <Sparkles className="h-4 w-4" /> Sign up free
+              </GhostCTA>
+            </div>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-6 text-xs uppercase tracking-[0.2em] text-foreground/60">
+              Trusted by <span className="text-foreground">300+ teams</span>
+            </p>
+          </Reveal>
 
-        {/* Video / product frame */}
-        <Reveal delay={0.25}>
-          <HeroVideo />
-        </Reveal>
+          <Reveal delay={0.25}>
+            <HeroVideo />
+          </Reveal>
+        </div>
       </div>
     </section>
   );
 }
 
-// ---------- Logo cloud ----------
-
 function LogoCloud() {
   const placeholders = ["ACME", "NORTHWIND", "STARK", "UMBRELLA", "MONARCH", "AXIOM"];
   return (
-    <section className="border-y border-border/60 bg-surface/30">
+    <section className="border-b border-border/60 bg-background">
       <div className="mx-auto max-w-7xl px-6 py-10">
         <p className="text-center text-xs uppercase tracking-[0.24em] text-muted-foreground">
           Client logos — placeholders (CS team to provide)
@@ -285,7 +321,7 @@ function LogoCloud() {
           {placeholders.map((name) => (
             <div
               key={name}
-              className="text-center font-display text-sm font-semibold tracking-widest text-muted-foreground"
+              className="text-center font-display text-sm font-semibold tracking-widest text-foreground/60"
             >
               {name}
             </div>
@@ -296,8 +332,6 @@ function LogoCloud() {
   );
 }
 
-// ---------- Pain ----------
-
 function Pain() {
   return (
     <section className="relative py-28">
@@ -307,12 +341,11 @@ function Pain() {
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="mt-6 text-4xl font-semibold leading-tight md:text-6xl">
-            "Did they{" "}
-            <span className="text-signal">actually</span> sign this?"
+            "Did they <span className="text-signal">actually</span> sign this?"
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-foreground/70">
             It's the question that comes up months later — during an audit, a dispute, or when a
             vendor claims they "never agreed to that." Email + PDF + "reply to confirm" gives you no
             real answer. No timestamp you can rely on. No proof of identity.
@@ -322,8 +355,6 @@ function Pain() {
     </section>
   );
 }
-
-// ---------- Features ----------
 
 const features = [
   {
@@ -360,7 +391,7 @@ const features = [
 
 function Features() {
   return (
-    <section id="features" className="relative py-28">
+    <section id="features" className="relative bg-surface py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-3xl">
           <Reveal>
@@ -376,25 +407,20 @@ function Features() {
         <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => (
             <Reveal key={f.title} delay={i * 0.05}>
-              <div className="group relative h-full overflow-hidden rounded-lg border border-border bg-surface p-6 transition-all hover:border-signal/40 hover:bg-surface-2">
-                <div className="relative">
-                  <div className="grid h-11 w-11 place-items-center rounded-md bg-background/60 text-signal ring-1 ring-border">
-                    <f.icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="mt-5 text-lg font-semibold">{f.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-sm transition-all hover:shadow-md">
+                <div className="grid h-11 w-11 place-items-center rounded-xl bg-signal/10 text-signal">
+                  <f.icon className="h-5 w-5" />
                 </div>
+                <h3 className="mt-5 text-lg font-semibold">{f.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-foreground/70">{f.body}</p>
               </div>
             </Reveal>
-
           ))}
         </div>
       </div>
     </section>
   );
 }
-
-// ---------- Compliance ----------
 
 function Compliance() {
   const items = [
@@ -405,7 +431,6 @@ function Compliance() {
   return (
     <section id="compliance" className="relative overflow-hidden py-28">
       <div className="relative mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2 lg:items-center">
-
         <div>
           <Reveal>
             <SectionLabel>Legal framework</SectionLabel>
@@ -416,7 +441,7 @@ function Compliance() {
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-6 text-lg text-muted-foreground">
+            <p className="mt-6 text-lg text-foreground/70">
               Courts look for three things when a signature is challenged: authenticity, integrity,
               and a reliable timestamp. eSignRight's audit trail — IP, device, timestamp, optional
               photo — is built to answer exactly those questions.
@@ -426,15 +451,15 @@ function Compliance() {
         <div className="space-y-3">
           {items.map((it, i) => (
             <Reveal key={it.k} delay={i * 0.08}>
-              <div className="flex gap-5 rounded-lg border border-border bg-surface p-6">
+              <div className="flex gap-5 rounded-2xl border border-border bg-white p-6 shadow-sm">
                 <div className="shrink-0">
-                  <div className="grid h-10 w-10 place-items-center rounded-lg bg-signal/10 text-signal ring-1 ring-signal/30">
+                  <div className="grid h-10 w-10 place-items-center rounded-lg bg-signal/10 text-signal">
                     <Check className="h-5 w-5" />
                   </div>
                 </div>
                 <div>
                   <div className="font-display text-sm font-semibold text-signal">{it.k}</div>
-                  <p className="mt-1 text-sm text-muted-foreground">{it.v}</p>
+                  <p className="mt-1 text-sm text-foreground/70">{it.v}</p>
                 </div>
               </div>
             </Reveal>
@@ -445,14 +470,12 @@ function Compliance() {
   );
 }
 
-// ---------- Testimonial ----------
-
 function Testimonial() {
   return (
-    <section className="relative py-28">
+    <section className="relative bg-surface py-28">
       <div className="mx-auto max-w-4xl px-6">
         <Reveal>
-          <figure className="relative rounded-3xl border border-border bg-gradient-to-br from-surface to-background p-10 md:p-14">
+          <figure className="relative rounded-3xl border border-border bg-white p-10 shadow-sm md:p-14">
             <div className="absolute left-10 top-8 font-display text-6xl leading-none text-signal/60">
               &ldquo;
             </div>
@@ -473,8 +496,6 @@ function Testimonial() {
     </section>
   );
 }
-
-// ---------- Pricing ----------
 
 const tiers = [
   {
@@ -550,7 +571,7 @@ function Pricing() {
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-4 text-muted-foreground">
+            <p className="mt-4 text-foreground/70">
               Full audit trail on every plan — including Free Forever.
             </p>
           </Reveal>
@@ -560,13 +581,12 @@ function Pricing() {
           {tiers.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.06}>
               <div
-                className={`relative flex h-full flex-col rounded-lg border p-6 transition-all ${
+                className={`relative flex h-full flex-col rounded-2xl border p-6 transition-all ${
                   t.highlight
-                    ? "border-signal/50 bg-gradient-to-b from-signal/10 to-surface ring-signal"
-                    : "border-border bg-surface hover:border-signal/30"
+                    ? "border-signal/40 bg-white ring-signal"
+                    : "border-border bg-white shadow-sm hover:shadow-md"
                 }`}
               >
-
                 {t.highlight && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-signal px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-signal-foreground">
                     Most popular
@@ -579,7 +599,7 @@ function Pricing() {
                   <span className="font-display text-4xl font-semibold">{t.price}</span>
                   <span className="text-sm text-muted-foreground">{t.per}</span>
                 </div>
-                <p className="mt-2 text-sm text-muted-foreground">{t.tagline}</p>
+                <p className="mt-2 text-sm text-foreground/70">{t.tagline}</p>
                 <ul className="mt-6 space-y-3 text-sm">
                   {t.features.map((f) => (
                     <li key={f} className="flex items-start gap-2.5">
@@ -594,8 +614,8 @@ function Pricing() {
                   rel={t.external ? "noopener noreferrer" : undefined}
                   className={`mt-8 inline-flex w-full items-center justify-center rounded-full px-4 py-2.5 text-sm font-semibold transition-all ${
                     t.highlight
-                      ? "bg-signal text-signal-foreground hover:shadow-[0_0_30px_-8px_var(--signal)]"
-                      : "border border-border bg-background/40 hover:border-signal/40"
+                      ? "bg-primary text-primary-foreground hover:opacity-90"
+                      : "border border-primary/70 text-primary hover:bg-primary hover:text-primary-foreground"
                   }`}
                 >
                   {t.cta}
@@ -608,8 +628,6 @@ function Pricing() {
     </section>
   );
 }
-
-// ---------- FAQ ----------
 
 const faqs = [
   {
@@ -637,7 +655,7 @@ const faqs = [
 function Faq() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="relative py-28">
+    <section id="faq" className="relative bg-surface py-28">
       <div className="mx-auto max-w-3xl px-6">
         <Reveal>
           <SectionLabel>FAQ</SectionLabel>
@@ -647,7 +665,7 @@ function Faq() {
             Questions, answered.
           </h2>
         </Reveal>
-        <div className="mt-12 divide-y divide-border rounded-lg border border-border bg-surface/40">
+        <div className="mt-12 divide-y divide-border rounded-2xl border border-border bg-white shadow-sm">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
@@ -669,7 +687,7 @@ function Faq() {
                   transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   className="overflow-hidden"
                 >
-                  <p className="px-6 pb-6 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
+                  <p className="px-6 pb-6 text-sm leading-relaxed text-foreground/70">{f.a}</p>
                 </motion.div>
               </div>
             );
@@ -680,26 +698,27 @@ function Faq() {
   );
 }
 
-// ---------- Closing CTA ----------
-
 function ClosingCTA() {
   return (
     <section id="demo" className="relative py-28">
       <div className="mx-auto max-w-5xl px-6">
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl border border-signal/30 bg-gradient-to-br from-surface to-background p-10 text-center md:p-16">
+          <div className="relative overflow-hidden rounded-3xl bg-hero-blue p-10 text-center md:p-16">
+            <HeroOrbs />
             <div className="relative">
-              <h2 className="text-4xl font-semibold leading-tight md:text-6xl">
+              <h2 className="text-4xl font-semibold leading-tight text-foreground md:text-6xl">
                 See the audit trail{" "}
                 <span className="text-signal italic">for yourself</span>.
               </h2>
 
-              <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
+              <p className="mx-auto mt-6 max-w-xl text-lg text-foreground/70">
                 Sign a real document in the next 5 minutes. Look at exactly what gets logged. Decide
                 if that's the proof your business needs.
               </p>
               <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-                <PrimaryCTA href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">Schedule a Demo</PrimaryCTA>
+                <PrimaryCTA href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
+                  Schedule a Demo
+                </PrimaryCTA>
                 <GhostCTA href={SIGNUP_URL}>Sign up free</GhostCTA>
               </div>
             </div>
@@ -710,22 +729,16 @@ function ClosingCTA() {
   );
 }
 
-// ---------- Footer ----------
-
 function Footer() {
   return (
-    <footer className="border-t border-border bg-surface/40">
+    <footer className="border-t border-border bg-background">
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2">
-              <img
-                src={logoAsset.url}
-                alt="eSignRight"
-                className="h-8 w-auto brightness-0 invert"
-              />
+              <img src={logoAsset.url} alt="eSignRight" className="h-9 w-auto" />
             </div>
-            <p className="mt-4 max-w-sm text-sm text-muted-foreground">
+            <p className="mt-4 max-w-sm text-sm text-foreground/70">
               Secure, auditable e-signatures for modern businesses. Every signature logged with
               timestamp, IP, and identity verification.
             </p>
@@ -745,7 +758,7 @@ function Footer() {
             <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
               Contact
             </div>
-            <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+            <ul className="mt-4 space-y-3 text-sm text-foreground/70">
               <li className="flex items-start gap-2.5">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-signal" />
                 <a href="mailto:hello@esignright.com" className="hover:text-foreground">hello@esignright.com</a>
@@ -773,8 +786,6 @@ function Footer() {
     </footer>
   );
 }
-
-// ---------- Page ----------
 
 function LandingPage() {
   return (
