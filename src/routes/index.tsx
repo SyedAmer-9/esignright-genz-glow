@@ -26,10 +26,9 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import logoAsset from "@/assets/esignright-logo.png.asset.json";
-
-import videoThumbAsset from "@/assets/video-thumb.png.asset.json";
-import auditIllustrationAsset from "@/assets/audit-illustration.png.asset.json";
+const logoAsset = { url: "/assets/esignright-logo.png" };
+const videoThumbAsset = { url: "/assets/video-thumb.png" };
+const auditIllustrationAsset = { url: "/assets/audit-illustration.png" };
 
 const VIDEO_BUCKET = "videobucket";
 const VIDEO_PATH = "eSignRight_HandsON.mp4";
