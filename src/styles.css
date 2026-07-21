@@ -144,10 +144,24 @@
   0%, 100% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(18px) rotate(-4deg); }
 }
+@keyframes magnify-drift {
+  0%, 100% { transform: translate(0, 0) rotate(-8deg); }
+  50%      { transform: translate(8px, -12px) rotate(-2deg); }
+}
+@keyframes magnify-sheen {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 0.9; }
+}
 
 @utility animate-float-slow {
   animation: float-slow 9s ease-in-out infinite;
 }
 @utility animate-float-slower {
   animation: float-slower 12s ease-in-out infinite;
+}
+@utility animate-magnify-drift {
+  animation: magnify-drift 7s ease-in-out infinite;
+}
+@utility animate-magnify-sheen {
+  animation: magnify-sheen 3.5s ease-in-out infinite;
 }

@@ -15,6 +15,7 @@ import {
   Phone,
   Sparkles,
   ChevronDown,
+  Search,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -168,11 +169,11 @@ function PrimaryCTA({
       href={href}
       target={target}
       rel={rel}
-      className="group inline-flex items-center gap-3 rounded-full bg-primary py-1.5 pl-6 pr-1.5 text-sm font-semibold text-primary-foreground transition-all hover:scale-[1.02] active:scale-[0.98]"
+      className="group inline-flex items-center gap-3 rounded-full bg-primary py-1.5 pl-6 pr-1.5 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_-15px_oklch(0.16_0.02_260/0.9)] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-18px_oklch(0.16_0.02_260/0.9)] active:translate-y-0"
     >
       <span>{children}</span>
-      <span className="grid h-9 w-9 place-items-center rounded-full bg-white text-primary transition-transform group-hover:translate-x-0.5">
-        <ArrowRight className="h-4 w-4" />
+      <span className="grid h-9 w-9 place-items-center rounded-full bg-white text-primary transition-all duration-300 ease-out group-hover:translate-x-0.5 group-hover:rotate-[-8deg]">
+        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
       </span>
     </a>
   );
@@ -209,11 +210,22 @@ function Nav() {
         <a href="#" className="flex items-center gap-2" aria-label="eSignRight home">
           <img src={logoAsset.url} alt="eSignRight" className="h-9 w-auto" />
         </a>
-        <nav className="hidden items-center gap-8 text-sm font-medium text-foreground/80 md:flex">
-          <a href="#features" className="hover:text-primary">Features</a>
-          <a href="#compliance" className="hover:text-primary">Compliance</a>
-          <a href="#pricing" className="hover:text-primary">Pricing</a>
-          <a href="#faq" className="hover:text-primary">FAQ</a>
+        <nav className="hidden items-center gap-8 text-sm font-medium text-foreground/70 md:flex">
+          {[
+            { href: "#features", label: "Features" },
+            { href: "#compliance", label: "Compliance" },
+            { href: "#pricing", label: "Pricing" },
+            { href: "#faq", label: "FAQ" },
+          ].map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="group relative py-1 transition-colors duration-200 hover:text-foreground"
+            >
+              {l.label}
+              <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-foreground transition-transform duration-300 ease-out group-hover:scale-x-100" />
+            </a>
+          ))}
         </nav>
         <div className="flex items-center gap-3">
           <a
@@ -262,30 +274,48 @@ function HeroOrbs() {
   );
 }
 
+/** Floating magnifying glass — echoes the "proof / inspect" motif from esignright.com */
+function MagnifyingGlass() {
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none absolute left-[6%] top-[38%] hidden md:block"
+    >
+      <div className="animate-magnify-drift">
+        <div className="relative">
+          <div className="grid h-24 w-24 place-items-center rounded-full border border-foreground/15 bg-white/40 shadow-[0_20px_50px_-20px_oklch(0.4_0.15_258/0.5)] backdrop-blur-md">
+            <Search className="h-10 w-10 text-foreground/70" strokeWidth={1.5} />
+            <div className="animate-magnify-sheen absolute left-4 top-4 h-6 w-6 rounded-full bg-white/70 blur-[6px]" />
+          </div>
+          <div className="absolute left-[76px] top-[76px] h-14 w-2 rotate-45 rounded-full bg-foreground/70" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-x-4 top-4 bottom-0 rounded-[2.5rem] bg-hero-blue" />
-      <div className="relative mx-auto max-w-7xl px-6 pt-20 pb-24 text-center md:pt-28 md:pb-32">
+      <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-28 text-center md:pt-32 md:pb-36">
         <HeroOrbs />
+        <MagnifyingGlass />
         <div className="relative">
-          <Reveal>
-            <SectionLabel>Trust · Security · Audit Trail</SectionLabel>
-          </Reveal>
           <Reveal delay={0.05}>
-            <h1 className="mx-auto mt-6 max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight text-foreground md:text-7xl">
+            <h1 className="mx-auto max-w-4xl text-5xl font-semibold leading-[1.02] tracking-[-0.03em] text-foreground md:text-[5.25rem]">
               A signature you can{" "}
               <span className="text-gradient-signal italic">actually prove</span>.
             </h1>
           </Reveal>
-          <Reveal delay={0.1}>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-foreground/70 md:text-xl">
+          <Reveal delay={0.12}>
+            <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-foreground/65 md:text-xl">
               Every document signed on eSignRight comes with a complete audit trail — who signed, when,
               from where, and on what device. Built for teams who need more than "they clicked yes."
             </p>
           </Reveal>
-          <Reveal delay={0.15}>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <Reveal delay={0.18}>
+            <div className="mt-11 flex flex-wrap items-center justify-center gap-3">
               <PrimaryCTA href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
                 Schedule a Demo
               </PrimaryCTA>
@@ -294,9 +324,9 @@ function Hero() {
               </GhostCTA>
             </div>
           </Reveal>
-          <Reveal delay={0.2}>
-            <p className="mt-6 text-xs uppercase tracking-[0.2em] text-foreground/60">
-              Trusted by <span className="text-foreground">300+ teams</span>
+          <Reveal delay={0.24}>
+            <p className="mt-8 text-xs uppercase tracking-[0.24em] text-foreground/55">
+              Trusted by <span className="text-foreground/90">300+ teams</span>
             </p>
           </Reveal>
 
@@ -407,8 +437,8 @@ function Features() {
         <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => (
             <Reveal key={f.title} delay={i * 0.05}>
-              <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-sm transition-all hover:shadow-md">
-                <div className="grid h-11 w-11 place-items-center rounded-xl bg-signal/10 text-signal">
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-signal/30 hover:shadow-[0_20px_50px_-25px_oklch(0.4_0.15_258/0.45)]">
+                <div className="grid h-11 w-11 place-items-center rounded-xl bg-signal/10 text-signal transition-all duration-300 group-hover:bg-signal group-hover:text-signal-foreground group-hover:rotate-[-6deg]">
                   <f.icon className="h-5 w-5" />
                 </div>
                 <h3 className="mt-5 text-lg font-semibold">{f.title}</h3>
@@ -581,10 +611,10 @@ function Pricing() {
           {tiers.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.06}>
               <div
-                className={`relative flex h-full flex-col rounded-2xl border p-6 transition-all ${
+                className={`relative flex h-full flex-col rounded-2xl border p-6 transition-all duration-300 ease-out hover:-translate-y-1 ${
                   t.highlight
-                    ? "border-signal/40 bg-white ring-signal"
-                    : "border-border bg-white shadow-sm hover:shadow-md"
+                    ? "border-signal/40 bg-white ring-signal hover:shadow-[0_25px_60px_-25px_oklch(0.4_0.15_258/0.55)]"
+                    : "border-border bg-white shadow-sm hover:border-signal/30 hover:shadow-[0_20px_50px_-25px_oklch(0.4_0.15_258/0.4)]"
                 }`}
               >
                 {t.highlight && (
