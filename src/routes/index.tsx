@@ -274,30 +274,48 @@ function HeroOrbs() {
   );
 }
 
+/** Floating magnifying glass — echoes the "proof / inspect" motif from esignright.com */
+function MagnifyingGlass() {
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none absolute left-[6%] top-[38%] hidden md:block"
+    >
+      <div className="animate-magnify-drift">
+        <div className="relative">
+          <div className="grid h-24 w-24 place-items-center rounded-full border border-foreground/15 bg-white/40 shadow-[0_20px_50px_-20px_oklch(0.4_0.15_258/0.5)] backdrop-blur-md">
+            <Search className="h-10 w-10 text-foreground/70" strokeWidth={1.5} />
+            <div className="animate-magnify-sheen absolute left-4 top-4 h-6 w-6 rounded-full bg-white/70 blur-[6px]" />
+          </div>
+          <div className="absolute left-[76px] top-[76px] h-14 w-2 rotate-45 rounded-full bg-foreground/70" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-x-4 top-4 bottom-0 rounded-[2.5rem] bg-hero-blue" />
-      <div className="relative mx-auto max-w-7xl px-6 pt-20 pb-24 text-center md:pt-28 md:pb-32">
+      <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-28 text-center md:pt-32 md:pb-36">
         <HeroOrbs />
+        <MagnifyingGlass />
         <div className="relative">
-          <Reveal>
-            <SectionLabel>Trust · Security · Audit Trail</SectionLabel>
-          </Reveal>
           <Reveal delay={0.05}>
-            <h1 className="mx-auto mt-6 max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight text-foreground md:text-7xl">
+            <h1 className="mx-auto max-w-4xl text-5xl font-semibold leading-[1.02] tracking-[-0.03em] text-foreground md:text-[5.25rem]">
               A signature you can{" "}
               <span className="text-gradient-signal italic">actually prove</span>.
             </h1>
           </Reveal>
-          <Reveal delay={0.1}>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-foreground/70 md:text-xl">
+          <Reveal delay={0.12}>
+            <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-foreground/65 md:text-xl">
               Every document signed on eSignRight comes with a complete audit trail — who signed, when,
               from where, and on what device. Built for teams who need more than "they clicked yes."
             </p>
           </Reveal>
-          <Reveal delay={0.15}>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <Reveal delay={0.18}>
+            <div className="mt-11 flex flex-wrap items-center justify-center gap-3">
               <PrimaryCTA href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
                 Schedule a Demo
               </PrimaryCTA>
@@ -306,9 +324,9 @@ function Hero() {
               </GhostCTA>
             </div>
           </Reveal>
-          <Reveal delay={0.2}>
-            <p className="mt-6 text-xs uppercase tracking-[0.2em] text-foreground/60">
-              Trusted by <span className="text-foreground">300+ teams</span>
+          <Reveal delay={0.24}>
+            <p className="mt-8 text-xs uppercase tracking-[0.24em] text-foreground/55">
+              Trusted by <span className="text-foreground/90">300+ teams</span>
             </p>
           </Reveal>
 
