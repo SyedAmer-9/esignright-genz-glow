@@ -131,14 +131,52 @@ function HeroVideo() {
   );
 }
 
+function IndiaFlag({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 16" className={className} aria-hidden="true">
+      <rect width="24" height="5.33" fill="currentColor" className="text-india-saffron" />
+      <rect y="5.33" width="24" height="5.33" fill="white" />
+      <rect y="10.67" width="24" height="5.33" fill="currentColor" className="text-india-green" />
+    </svg>
+  );
+}
+
+function TopBanner() {
+  return (
+    <div className="sticky top-0 z-50 h-8 w-full bg-surface-2/90 backdrop-blur-sm">
+      <div className="mx-auto flex h-full max-w-7xl items-center justify-center gap-2 px-6 text-xs font-medium text-foreground/80">
+        <IndiaFlag className="h-3.5 w-auto rounded-sm" />
+        <span>Made in India</span>
+        <span className="text-foreground/40">·</span>
+        <span>Made for India</span>
+      </div>
+    </div>
+  );
+}
+
+function IndiaBadge() {
+  return (
+    <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground/80 shadow-sm">
+      <span className="flex gap-0.5">
+        <span className="h-2 w-2 rounded-full border border-india-saffron/40 bg-india-saffron" />
+        <span className="h-2 w-2 rounded-full border border-border bg-white shadow-sm" />
+        <span className="h-2 w-2 rounded-full border border-india-green/40 bg-india-green" />
+      </span>
+      <span>Made in India</span>
+      <span className="text-foreground/40">·</span>
+      <span>Made for India</span>
+    </span>
+  );
+}
+
 export const Route = createFileRoute("/")({
   component: LandingPage,
   head: () => ({
     meta: [
-      { title: "eSignRight | Fast, Legal, and Secure E-Signatures" },
-      { name: "description", content: "Secure, auditable e-signatures for modern businesses with complete proof, identity verification, and legal audit trails." },
-      { property: "og:title", content: "eSignRight | Fast, Legal, and Secure E-Signatures" },
-      { property: "og:description", content: "Secure, auditable e-signatures for modern businesses with complete proof, identity verification, and legal audit trails." },
+      { title: "eSignRight | Fast, Legal, and Secure E-Signatures for India" },
+      { name: "description", content: "Secure, auditable e-signatures for modern businesses in India with complete proof, identity verification, and legal audit trails." },
+      { property: "og:title", content: "eSignRight | Fast, Legal, and Secure E-Signatures for India" },
+      { property: "og:description", content: "Secure, auditable e-signatures for modern businesses in India with complete proof, identity verification, and legal audit trails." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -223,7 +261,7 @@ function GhostCTA({
 
 function Nav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
+    <header className="sticky top-8 z-40 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <a href="#" className="flex items-center gap-2" aria-label="eSignRight home">
           <img src={logoAsset.url} alt="eSignRight" className="h-9 w-auto" />
@@ -328,7 +366,13 @@ function Hero() {
             </p>
           </Reveal>
 
-          <Reveal delay={0.25}>
+          <Reveal delay={0.26}>
+            <div className="mt-4 flex justify-center">
+              <IndiaBadge />
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.30}>
             <HeroVideo />
           </Reveal>
         </div>
@@ -864,6 +908,7 @@ function Footer() {
 function LandingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <TopBanner />
       <Nav />
       <main>
         <Hero />
