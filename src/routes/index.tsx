@@ -149,10 +149,11 @@ export const Route = createFileRoute("/")({
 });
 
 
-function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+function Reveal({ children, delay = 0, className }: { children: React.ReactNode; delay?: number; className?: string }) {
   const reduce = useReducedMotion();
   return (
     <motion.div
+      className={className}
       initial={reduce ? false : { opacity: 0, y: 24 }}
       whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
@@ -464,9 +465,9 @@ function Features() {
           </Reveal>
         </div>
 
-        <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 flex flex-wrap justify-center gap-4">
           {features.map((f, i) => (
-            <Reveal key={f.title} delay={i * 0.03}>
+            <Reveal key={f.title} delay={i * 0.03} className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
               <div className="group relative h-full overflow-hidden rounded-2xl border border-border/60 bg-signal/[0.04] p-6 text-center transition-all duration-300 ease-out hover:-translate-y-1 hover:border-signal/30 hover:bg-signal/[0.08] hover:shadow-[0_20px_50px_-25px_oklch(0.4_0.15_258/0.45)]">
                 <div className="mx-auto grid h-11 w-11 place-items-center rounded-xl bg-signal/10 text-signal transition-all duration-300 group-hover:bg-signal group-hover:text-signal-foreground group-hover:rotate-[-6deg]">
                   <f.icon className="h-5 w-5" />
