@@ -611,10 +611,10 @@ function Pricing() {
           {tiers.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.06}>
               <div
-                className={`relative flex h-full flex-col rounded-2xl border p-6 transition-all ${
+                className={`relative flex h-full flex-col rounded-2xl border p-6 transition-all duration-300 ease-out hover:-translate-y-1 ${
                   t.highlight
-                    ? "border-signal/40 bg-white ring-signal"
-                    : "border-border bg-white shadow-sm hover:shadow-md"
+                    ? "border-signal/40 bg-white ring-signal hover:shadow-[0_25px_60px_-25px_oklch(0.4_0.15_258/0.55)]"
+                    : "border-border bg-white shadow-sm hover:border-signal/30 hover:shadow-[0_20px_50px_-25px_oklch(0.4_0.15_258/0.4)]"
                 }`}
               >
                 {t.highlight && (
