@@ -12,7 +12,7 @@ import {
   Mail,
   MapPin,
   Phone,
-  Sparkles,
+  
   ChevronDown,
   FileText,
   Files,
@@ -318,9 +318,7 @@ function Hero() {
               <PrimaryCTA href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
                 Schedule a Demo
               </PrimaryCTA>
-              <GhostCTA href={SIGNUP_URL}>
-                <Sparkles className="h-4 w-4" /> Sign up free
-              </GhostCTA>
+              <GhostCTA href={SIGNUP_URL}>Sign up free</GhostCTA>
             </div>
           </Reveal>
           <Reveal delay={0.24}>
