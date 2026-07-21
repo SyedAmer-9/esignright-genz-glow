@@ -604,7 +604,7 @@ const tiers = [
       "API + webhooks",
       "Priority support",
     ],
-    cta: "Start Business plan",
+    cta: "\u00a0Business plan",
     href: SIGNUP_URL,
     external: false,
     highlight: true,
