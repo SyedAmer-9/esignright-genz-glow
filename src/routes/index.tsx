@@ -27,7 +27,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import logoAsset from "@/assets/esignright-logo.png.asset.json";
-import heroDiscAsset from "@/assets/hero-disc.png.asset.json";
+
 import videoThumbAsset from "@/assets/video-thumb.png.asset.json";
 import auditIllustrationAsset from "@/assets/audit-illustration.png.asset.json";
 
@@ -69,6 +69,9 @@ function HeroVideo() {
         <img
           src={videoThumbAsset.url}
           alt="Product walkthrough preview"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
           className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ${
             playing ? "scale-105 opacity-0" : "scale-100 opacity-100"
           }`}
@@ -275,21 +278,6 @@ function HeroOrbs() {
   );
 }
 
-/** Floating tilted glass disc — the signature visual from esignright.com hero */
-function HeroDisc() {
-  return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute left-[2%] top-[40%] hidden md:block"
-    >
-      <img
-        src={heroDiscAsset.url}
-        alt=""
-        className="animate-float-slow h-56 w-56 select-none drop-shadow-[0_30px_60px_oklch(0.4_0.15_258/0.35)] lg:h-64 lg:w-64"
-      />
-    </div>
-  );
-}
 
 function Hero() {
   return (
@@ -297,7 +285,7 @@ function Hero() {
       <div className="absolute inset-x-4 top-4 bottom-0 rounded-[2.5rem] bg-hero-blue" />
       <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-28 text-center md:pt-32 md:pb-36">
         <HeroOrbs />
-        <HeroDisc />
+        
         <div className="relative">
           <Reveal delay={0.05}>
             <h1 className="mx-auto max-w-4xl text-5xl font-semibold leading-[1.02] tracking-[-0.03em] text-foreground md:text-[5.25rem]">
