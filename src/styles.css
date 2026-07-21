@@ -41,6 +41,10 @@
   --color-surface-2: var(--surface-2);
   --color-signal: var(--signal);
   --color-signal-foreground: var(--signal-foreground);
+
+  --color-india-saffron: #FF9933;
+  --color-india-white: #FFFFFF;
+  --color-india-green: #138808;
 }
 
 :root {
