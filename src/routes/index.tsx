@@ -169,11 +169,11 @@ function PrimaryCTA({
       href={href}
       target={target}
       rel={rel}
-      className="group inline-flex items-center gap-3 rounded-full bg-primary py-1.5 pl-6 pr-1.5 text-sm font-semibold text-primary-foreground transition-all hover:scale-[1.02] active:scale-[0.98]"
+      className="group inline-flex items-center gap-3 rounded-full bg-primary py-1.5 pl-6 pr-1.5 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_-15px_oklch(0.16_0.02_260/0.9)] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-18px_oklch(0.16_0.02_260/0.9)] active:translate-y-0"
     >
       <span>{children}</span>
-      <span className="grid h-9 w-9 place-items-center rounded-full bg-white text-primary transition-transform group-hover:translate-x-0.5">
-        <ArrowRight className="h-4 w-4" />
+      <span className="grid h-9 w-9 place-items-center rounded-full bg-white text-primary transition-all duration-300 ease-out group-hover:translate-x-0.5 group-hover:rotate-[-8deg]">
+        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
       </span>
     </a>
   );
