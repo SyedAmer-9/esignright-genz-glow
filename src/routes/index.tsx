@@ -530,9 +530,10 @@ function Compliance() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="text-lg text-foreground/70">
-              Courts look for three things when a signature is challenged: authenticity, integrity,
-              and a reliable timestamp. eSignRight's audit trail, IP, device, timestamp, optional
-              photo, is built to answer exactly those questions.
+              Under the Information Technology Act, 2000, courts look for three things when a signature
+              is challenged: authenticity, integrity, and a reliable timestamp. eSignRight's audit
+              trail, IP, device, timestamp, optional photo, is built to answer exactly those
+              questions.
             </p>
           </Reveal>
           <div className="grid gap-3 sm:grid-cols-1">
