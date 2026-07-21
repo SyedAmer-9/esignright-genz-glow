@@ -154,20 +154,6 @@ function TopBanner() {
   );
 }
 
-function IndiaBadge() {
-  return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground/80 shadow-sm">
-      <span className="flex gap-0.5">
-        <span className="h-2 w-2 rounded-full border border-india-saffron/40 bg-india-saffron" />
-        <span className="h-2 w-2 rounded-full border border-border bg-white shadow-sm" />
-        <span className="h-2 w-2 rounded-full border border-india-green/40 bg-india-green" />
-      </span>
-      <span>Made in India</span>
-      <span className="text-foreground/40">·</span>
-      <span>Made for India</span>
-    </span>
-  );
-}
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -366,11 +352,6 @@ function Hero() {
             </p>
           </Reveal>
 
-          <Reveal delay={0.26}>
-            <div className="mt-4 flex justify-center">
-              <IndiaBadge />
-            </div>
-          </Reveal>
 
           <Reveal delay={0.30}>
             <HeroVideo />
