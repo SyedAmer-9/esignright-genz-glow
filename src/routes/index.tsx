@@ -437,7 +437,7 @@ function Features() {
         <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => (
             <Reveal key={f.title} delay={i * 0.05}>
-              <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-sm transition-all hover:shadow-md">
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-signal/30 hover:shadow-[0_20px_50px_-25px_oklch(0.4_0.15_258/0.45)]">
                 <div className="grid h-11 w-11 place-items-center rounded-xl bg-signal/10 text-signal">
                   <f.icon className="h-5 w-5" />
                 </div>
