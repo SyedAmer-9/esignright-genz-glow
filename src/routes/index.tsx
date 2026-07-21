@@ -4,7 +4,6 @@ import {
   ShieldCheck,
   FileSignature,
   Fingerprint,
-  Lock,
   Server,
   Users,
   ArrowRight,
@@ -15,12 +14,22 @@ import {
   Phone,
   Sparkles,
   ChevronDown,
-  Search,
+  FileText,
+  Files,
+  GitBranch,
+  Type,
+  LayoutTemplate,
+  Bell,
+  FolderOpen,
+  Webhook,
+  BarChart3,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import videoPoster from "@/assets/video-poster.jpg";
 import logoAsset from "@/assets/esignright-logo.png.asset.json";
+import heroDiscAsset from "@/assets/hero-disc.png.asset.json";
+import videoThumbAsset from "@/assets/video-thumb.png.asset.json";
+import auditIllustrationAsset from "@/assets/audit-illustration.png.asset.json";
 
 const VIDEO_BUCKET = "videobucket";
 const VIDEO_PATH = "eSignRight_HandsON.mp4";
@@ -58,15 +67,15 @@ function HeroVideo() {
     <div className="mx-auto mt-16 max-w-5xl">
       <div className="relative aspect-video overflow-hidden rounded-3xl bg-white ring-signal">
         <img
-          src={videoPoster}
+          src={videoThumbAsset.url}
           alt="Product walkthrough preview"
           className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ${
-            playing ? "scale-105 opacity-0" : "scale-110 blur-xl opacity-90"
+            playing ? "scale-105 opacity-0" : "scale-100 opacity-100"
           }`}
           aria-hidden={playing}
         />
         <div
-          className={`absolute inset-0 bg-white/30 transition-opacity duration-500 ${
+          className={`absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent transition-opacity duration-500 ${
             playing ? "opacity-0" : "opacity-100"
           }`}
         />
@@ -93,15 +102,10 @@ function HeroVideo() {
               className="group flex flex-col items-center gap-4"
               aria-label="Play product walkthrough"
             >
-              <img
-                src={logoAsset.url}
-                alt="eSignRight"
-                className="h-8 w-auto opacity-95 drop-shadow"
-              />
               <span className="grid h-20 w-20 place-items-center rounded-full bg-signal text-signal-foreground shadow-[0_0_60px_-10px_var(--signal)] transition-transform group-hover:scale-110">
                 <Play className="h-8 w-8 translate-x-0.5" />
               </span>
-              <span className="text-sm font-medium text-foreground/70">
+              <span className="rounded-full bg-white/90 px-4 py-1.5 text-sm font-medium text-foreground/80 shadow-sm">
                 {loading ? "Loading video…" : "Watch the 2-minute walkthrough"}
               </span>
             </button>
@@ -152,7 +156,6 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** Black pill CTA with white arrow-circle on the right — matches esignright.com "Get Started" */
 function PrimaryCTA({
   children,
   href = "#demo",
@@ -179,7 +182,6 @@ function PrimaryCTA({
   );
 }
 
-/** Outlined pill — matches esignright.com "SIGN IN" */
 function GhostCTA({
   children,
   href = "#signup",
@@ -243,7 +245,6 @@ function Nav() {
   );
 }
 
-/** Floating glass orbs — the visual signature of esignright.com hero */
 function HeroOrbs() {
   return (
     <>
@@ -274,22 +275,18 @@ function HeroOrbs() {
   );
 }
 
-/** Floating magnifying glass — echoes the "proof / inspect" motif from esignright.com */
-function MagnifyingGlass() {
+/** Floating tilted glass disc — the signature visual from esignright.com hero */
+function HeroDisc() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute left-[6%] top-[38%] hidden md:block"
+      className="pointer-events-none absolute left-[2%] top-[40%] hidden md:block"
     >
-      <div className="animate-magnify-drift">
-        <div className="relative">
-          <div className="grid h-24 w-24 place-items-center rounded-full border border-foreground/15 bg-white/40 shadow-[0_20px_50px_-20px_oklch(0.4_0.15_258/0.5)] backdrop-blur-md">
-            <Search className="h-10 w-10 text-foreground/70" strokeWidth={1.5} />
-            <div className="animate-magnify-sheen absolute left-4 top-4 h-6 w-6 rounded-full bg-white/70 blur-[6px]" />
-          </div>
-          <div className="absolute left-[76px] top-[76px] h-14 w-2 rotate-45 rounded-full bg-foreground/70" />
-        </div>
-      </div>
+      <img
+        src={heroDiscAsset.url}
+        alt=""
+        className="animate-float-slow h-56 w-56 select-none drop-shadow-[0_30px_60px_oklch(0.4_0.15_258/0.35)] lg:h-64 lg:w-64"
+      />
     </div>
   );
 }
@@ -300,17 +297,17 @@ function Hero() {
       <div className="absolute inset-x-4 top-4 bottom-0 rounded-[2.5rem] bg-hero-blue" />
       <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-28 text-center md:pt-32 md:pb-36">
         <HeroOrbs />
-        <MagnifyingGlass />
+        <HeroDisc />
         <div className="relative">
           <Reveal delay={0.05}>
             <h1 className="mx-auto max-w-4xl text-5xl font-semibold leading-[1.02] tracking-[-0.03em] text-foreground md:text-[5.25rem]">
-              A signature you can{" "}
-              <span className="text-gradient-signal italic">actually prove</span>.
+              E-Signature Done Right:{" "}
+              <span className="text-gradient-signal italic">Fast, Legal, and Secure</span>
             </h1>
           </Reveal>
           <Reveal delay={0.12}>
             <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-foreground/65 md:text-xl">
-              Every document signed on eSignRight comes with a complete audit trail — who signed, when,
+              Every document signed on eSignRight comes with a complete audit trail. Who signed, when,
               from where, and on what device. Built for teams who need more than "they clicked yes."
             </p>
           </Reveal>
@@ -345,7 +342,7 @@ function LogoCloud() {
     <section className="border-b border-border/60 bg-background">
       <div className="mx-auto max-w-7xl px-6 py-10">
         <p className="text-center text-xs uppercase tracking-[0.24em] text-muted-foreground">
-          Client logos — placeholders (CS team to provide)
+          Client logos, placeholders (CS team to provide)
         </p>
         <div className="mt-6 grid grid-cols-2 items-center gap-8 opacity-70 sm:grid-cols-3 md:grid-cols-6">
           {placeholders.map((name) => (
@@ -376,8 +373,8 @@ function Pain() {
         </Reveal>
         <Reveal delay={0.1}>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-foreground/70">
-            It's the question that comes up months later — during an audit, a dispute, or when a
-            vendor claims they "never agreed to that." Email + PDF + "reply to confirm" gives you no
+            It's the question that comes up months later, during an audit, a dispute, or when a
+            vendor claims they "never agreed to that." Email plus PDF plus "reply to confirm" gives you no
             real answer. No timestamp you can rely on. No proof of identity.
           </p>
         </Reveal>
@@ -388,34 +385,69 @@ function Pain() {
 
 const features = [
   {
+    icon: FileText,
+    title: "Single Document Sign Request",
+    body: "Send a single document to one or more recipients for quick, secure e-signature.",
+  },
+  {
+    icon: Files,
+    title: "Multi-Document Sign Request",
+    body: "Bundle multiple documents in one request for faster, streamlined sign-offs.",
+  },
+  {
+    icon: GitBranch,
+    title: "Flexible Signer Flows",
+    body: "Choose sequential or parallel signing to match your workflow.",
+  },
+  {
+    icon: Type,
+    title: "Dynamic Placeholder Support",
+    body: "Easily place signature, text, date, and checkbox fields on any document.",
+  },
+  {
     icon: ShieldCheck,
     title: "Secure Audit Trail",
-    body: "Every action — sent, viewed, signed — is logged with a timestamp in an encrypted record. The artifact you point to if a signed document is ever disputed.",
+    body: "Track every action with AES-encrypted logs for full legal compliance.",
   },
   {
     icon: Fingerprint,
     title: "Signer Identity Verification",
-    body: "Captures the signer's IP-based location and an optional photo at the exact moment of signing. An extra layer of proof beyond \"whoever had the email link.\"",
+    body: "Capture signer geolocation and photo for an extra layer of authenticity.",
   },
   {
-    icon: Lock,
-    title: "Encrypted Storage, Every Tier",
-    body: "Documents are encrypted at rest and in transit from the Free Forever tier upward — not gated behind a premium plan.",
+    icon: LayoutTemplate,
+    title: "Custom Template Creation",
+    body: "Save reusable templates with predefined roles and fields to save time.",
+  },
+  {
+    icon: Bell,
+    title: "Auto Reminders & Alerts",
+    body: "Keep signers on track with smart reminders and instant status updates.",
+  },
+  {
+    icon: Users,
+    title: "Team Management",
+    body: "Add users, assign permissions, and monitor activity across departments.",
+  },
+  {
+    icon: FolderOpen,
+    title: "Document Repository",
+    body: "Access all sent, signed, or pending files in a searchable document management hub.",
+  },
+  {
+    icon: Webhook,
+    title: "API Integration & Webhooks",
+    body: "Integrate e-signatures into your tools with powerful APIs and real-time sync.",
   },
   {
     icon: Server,
     title: "Self-Hosted Option",
-    body: "For businesses that need full control over where data physically lives — relevant for security-conscious industries with strict data-residency needs.",
+    body: "Self-hosted deployment for full control over data and privacy.",
   },
   {
-    icon: Users,
-    title: "Team Roles & Permissions",
-    body: "Control who in your organization can send, view, or manage documents — with activity visibility by department or individual.",
-  },
-  {
-    icon: FileSignature,
-    title: "Sequential & Parallel Signing",
-    body: "Route documents in any order — employee first, then HR countersigns, or all parties at once. Automated reminders keep everything moving.",
+    icon: BarChart3,
+    title: "Dashboards & Reports",
+    body: "Use custom dashboards and automated reporting to visualize document activity and signer behavior.",
   },
 ];
 
@@ -423,25 +455,25 @@ function Features() {
   return (
     <section id="features" className="relative bg-surface py-28">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="max-w-3xl">
+        <div className="mx-auto max-w-3xl text-center">
           <Reveal>
             <SectionLabel>What proof looks like</SectionLabel>
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="mt-6 text-4xl font-semibold leading-tight md:text-5xl">
-              Built to answer the questions your auditor will ask.
+              Features That Make E-Signing Effortless
             </h2>
           </Reveal>
         </div>
 
-        <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((f, i) => (
-            <Reveal key={f.title} delay={i * 0.05}>
-              <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-signal/30 hover:shadow-[0_20px_50px_-25px_oklch(0.4_0.15_258/0.45)]">
-                <div className="grid h-11 w-11 place-items-center rounded-xl bg-signal/10 text-signal transition-all duration-300 group-hover:bg-signal group-hover:text-signal-foreground group-hover:rotate-[-6deg]">
+            <Reveal key={f.title} delay={i * 0.03}>
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-border/60 bg-signal/[0.04] p-6 text-center transition-all duration-300 ease-out hover:-translate-y-1 hover:border-signal/30 hover:bg-signal/[0.08] hover:shadow-[0_20px_50px_-25px_oklch(0.4_0.15_258/0.45)]">
+                <div className="mx-auto grid h-11 w-11 place-items-center rounded-xl bg-signal/10 text-signal transition-all duration-300 group-hover:bg-signal group-hover:text-signal-foreground group-hover:rotate-[-6deg]">
                   <f.icon className="h-5 w-5" />
                 </div>
-                <h3 className="mt-5 text-lg font-semibold">{f.title}</h3>
+                <h3 className="mt-5 text-base font-semibold">{f.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-foreground/70">{f.body}</p>
               </div>
             </Reveal>
@@ -456,7 +488,7 @@ function Compliance() {
   const items = [
     { k: "Section 4", v: "Electronic records get the same legal recognition as paper." },
     { k: "Section 5", v: "A properly authenticated electronic signature equals a handwritten one." },
-    { k: "Section 10A", v: "Contracts formed electronically — NDAs, offer letters, vendor agreements — are enforceable exactly like paper." },
+    { k: "Section 10A", v: "Contracts formed electronically, NDAs, offer letters, vendor agreements, are enforceable exactly like paper." },
   ];
   return (
     <section id="compliance" className="relative overflow-hidden py-28">
@@ -473,12 +505,21 @@ function Compliance() {
           <Reveal delay={0.1}>
             <p className="mt-6 text-lg text-foreground/70">
               Courts look for three things when a signature is challenged: authenticity, integrity,
-              and a reliable timestamp. eSignRight's audit trail — IP, device, timestamp, optional
-              photo — is built to answer exactly those questions.
+              and a reliable timestamp. eSignRight's audit trail, IP, device, timestamp, optional
+              photo, is built to answer exactly those questions.
             </p>
           </Reveal>
         </div>
         <div className="space-y-3">
+          <Reveal>
+            <div className="overflow-hidden rounded-3xl">
+              <img
+                src={auditIllustrationAsset.url}
+                alt="Audit trail with signer location and identity verification"
+                className="w-full h-auto"
+              />
+            </div>
+          </Reveal>
           {items.map((it, i) => (
             <Reveal key={it.k} delay={i * 0.08}>
               <div className="flex gap-5 rounded-2xl border border-border bg-white p-6 shadow-sm">
@@ -545,7 +586,7 @@ const tiers = [
     per: "/mo",
     tagline: "For small teams starting to standardize.",
     features: ["Up to 3 users", "Unlimited documents", "5 templates", "Reminders", "Basic audit trail"],
-    cta: "Start free trial",
+    cta: "Starter plan",
     href: SIGNUP_URL,
     external: false,
     highlight: false,
@@ -563,9 +604,9 @@ const tiers = [
       "API + webhooks",
       "Priority support",
     ],
-    cta: "Schedule a demo",
-    href: CALENDAR_URL,
-    external: true,
+    cta: "Start Business plan",
+    href: SIGNUP_URL,
+    external: false,
     highlight: true,
   },
   {
@@ -580,9 +621,9 @@ const tiers = [
       "Configurable verification",
       "Dedicated onboarding",
     ],
-    cta: "Talk to sales",
-    href: "#demo",
-    external: false,
+    cta: "Schedule a call",
+    href: CALENDAR_URL,
+    external: true,
     highlight: false,
   },
 ];
@@ -602,7 +643,7 @@ function Pricing() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-4 text-foreground/70">
-              Full audit trail on every plan — including Free Forever.
+              Full audit trail on every plan, including Free Forever.
             </p>
           </Reveal>
         </div>
@@ -662,11 +703,11 @@ function Pricing() {
 const faqs = [
   {
     q: "Is this admissible as evidence in court?",
-    a: "For standard commercial documents (NDAs, offer letters, vendor agreements), a strong audit trail is generally valid. Courts weigh authenticity, integrity, and timestamp reliability — all of which the audit trail is built to capture.",
+    a: "For standard commercial documents (NDAs, offer letters, vendor agreements), a strong audit trail is generally valid. Courts weigh authenticity, integrity, and timestamp reliability, all of which the audit trail is built to capture.",
   },
   {
     q: "Where is our data stored?",
-    a: "We're happy to walk through data residency and hosting details directly with your team — reach out before you commit if this is a requirement for your compliance sign-off.",
+    a: "We're happy to walk through data residency and hosting details directly with your team. Reach out before you commit if this is a requirement for your compliance sign-off.",
   },
   {
     q: "Do signers need to install anything or create an account?",
@@ -674,7 +715,7 @@ const faqs = [
   },
   {
     q: "Can we self-host?",
-    a: "Yes, on the Enterprise plan — full control over data location and infrastructure.",
+    a: "Yes, on the Enterprise plan. Full control over data location and infrastructure.",
   },
   {
     q: "What's your data retention policy?",
