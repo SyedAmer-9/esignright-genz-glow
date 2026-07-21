@@ -510,6 +510,8 @@ function Compliance() {
               <img
                 src={auditIllustrationAsset.url}
                 alt="Audit trail with signer location and identity verification"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-auto"
               />
             </div>
