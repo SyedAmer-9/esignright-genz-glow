@@ -135,8 +135,16 @@ function HeroVideo() {
 export const Route = createFileRoute("/")({
   component: LandingPage,
   head: () => ({
+    meta: [
+      { title: "eSignRight | Fast, Legal, and Secure E-Signatures" },
+      { name: "description", content: "Secure, auditable e-signatures for modern businesses with complete proof, identity verification, and legal audit trails." },
+      { property: "og:title", content: "eSignRight | Fast, Legal, and Secure E-Signatures" },
+      { property: "og:description", content: "Secure, auditable e-signatures for modern businesses with complete proof, identity verification, and legal audit trails." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
     links: [
-      { rel: "preload", as: "image", href: videoThumbAsset.url, fetchpriority: "high" },
+      { rel: "preload", as: "image", href: videoThumbAsset.url, fetchPriority: "high" },
     ],
   }),
 });
