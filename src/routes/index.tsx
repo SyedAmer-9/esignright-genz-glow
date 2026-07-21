@@ -251,7 +251,7 @@ function Nav() {
             href={SIGNUP_URL}
             className="hidden rounded-full border border-primary/80 px-5 py-2 text-xs font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary hover:text-primary-foreground sm:inline-flex"
           >
-            Sign In
+            Sign Up
           </a>
           <PrimaryCTA href={CALENDAR_URL} target="_blank" rel="noopener noreferrer">
             Schedule a Demo
