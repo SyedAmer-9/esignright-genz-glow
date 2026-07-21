@@ -15,6 +15,7 @@ import {
   Phone,
   Sparkles,
   ChevronDown,
+  Search,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
