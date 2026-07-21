@@ -12,7 +12,7 @@ import {
   Mail,
   MapPin,
   Phone,
-  Sparkles,
+  
   ChevronDown,
   FileText,
   Files,
