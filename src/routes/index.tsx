@@ -261,7 +261,7 @@ function GhostCTA({
 
 function Nav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
+    <header className="sticky top-8 z-40 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <a href="#" className="flex items-center gap-2" aria-label="eSignRight home">
           <img src={logoAsset.url} alt="eSignRight" className="h-9 w-auto" />
@@ -366,7 +366,13 @@ function Hero() {
             </p>
           </Reveal>
 
-          <Reveal delay={0.25}>
+          <Reveal delay={0.26}>
+            <div className="mt-4 flex justify-center">
+              <IndiaBadge />
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.30}>
             <HeroVideo />
           </Reveal>
         </div>
@@ -902,6 +908,7 @@ function Footer() {
 function LandingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <TopBanner />
       <Nav />
       <main>
         <Hero />
