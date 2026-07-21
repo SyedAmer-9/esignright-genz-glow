@@ -509,9 +509,9 @@ function Compliance() {
             </p>
           </Reveal>
         </div>
-        <div className="space-y-3">
+        <div className="space-y-4">
           <Reveal>
-            <div className="overflow-hidden rounded-3xl">
+            <div className="overflow-hidden rounded-3xl border border-border bg-white shadow-sm">
               <img
                 src={auditIllustrationAsset.url}
                 alt="Audit trail with signer location and identity verification"
@@ -521,22 +521,25 @@ function Compliance() {
               />
             </div>
           </Reveal>
-          {items.map((it, i) => (
-            <Reveal key={it.k} delay={i * 0.08}>
-              <div className="flex gap-5 rounded-2xl border border-border bg-white p-6 shadow-sm">
-                <div className="shrink-0">
-                  <div className="grid h-10 w-10 place-items-center rounded-lg bg-signal/10 text-signal">
-                    <Check className="h-5 w-5" />
+          <div className="grid gap-3 sm:grid-cols-1">
+            {items.map((it, i) => (
+              <Reveal key={it.k} delay={i * 0.06}>
+                <div className="group relative flex items-start gap-5 rounded-2xl border border-border bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-signal/40 hover:shadow-md">
+                  <div className="flex shrink-0 flex-col items-center gap-2 border-r border-border/70 pr-5">
+                    <div className="grid h-10 w-10 place-items-center rounded-xl bg-signal/10 text-signal ring-1 ring-signal/20">
+                      <Check className="h-5 w-5" />
+                    </div>
+                    <div className="font-display text-[11px] font-semibold uppercase tracking-wider text-signal">
+                      {it.k}
+                    </div>
                   </div>
+                  <p className="pt-1 text-sm leading-relaxed text-foreground/75">{it.v}</p>
                 </div>
-                <div>
-                  <div className="font-display text-sm font-semibold text-signal">{it.k}</div>
-                  <p className="mt-1 text-sm text-foreground/70">{it.v}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            ))}
+          </div>
         </div>
+
       </div>
     </section>
   );
