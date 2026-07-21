@@ -300,7 +300,7 @@ function Hero() {
         
         <div className="relative">
           <Reveal delay={0.05}>
-            <h1 className="mx-auto max-w-4xl text-3xl font-semibold leading-[1.12] tracking-normal text-foreground sm:text-4xl md:text-5xl lg:text-[3.5rem]">
+            <h1 className="mx-auto max-w-4xl text-2xl font-semibold leading-[1.12] tracking-normal text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
               E-Signature Done Right:{" "}
               <span className="inline-block max-w-full text-gradient-signal italic [text-wrap:balance]">Fast, Legal, and Secure</span>
             </h1>
