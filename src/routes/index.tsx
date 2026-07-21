@@ -210,11 +210,22 @@ function Nav() {
         <a href="#" className="flex items-center gap-2" aria-label="eSignRight home">
           <img src={logoAsset.url} alt="eSignRight" className="h-9 w-auto" />
         </a>
-        <nav className="hidden items-center gap-8 text-sm font-medium text-foreground/80 md:flex">
-          <a href="#features" className="hover:text-primary">Features</a>
-          <a href="#compliance" className="hover:text-primary">Compliance</a>
-          <a href="#pricing" className="hover:text-primary">Pricing</a>
-          <a href="#faq" className="hover:text-primary">FAQ</a>
+        <nav className="hidden items-center gap-8 text-sm font-medium text-foreground/70 md:flex">
+          {[
+            { href: "#features", label: "Features" },
+            { href: "#compliance", label: "Compliance" },
+            { href: "#pricing", label: "Pricing" },
+            { href: "#faq", label: "FAQ" },
+          ].map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="group relative py-1 transition-colors duration-200 hover:text-foreground"
+            >
+              {l.label}
+              <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-foreground transition-transform duration-300 ease-out group-hover:scale-x-100" />
+            </a>
+          ))}
         </nav>
         <div className="flex items-center gap-3">
           <a
