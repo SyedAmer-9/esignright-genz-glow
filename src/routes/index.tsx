@@ -131,6 +131,44 @@ function HeroVideo() {
   );
 }
 
+function IndiaFlag({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 16" className={className} aria-hidden="true">
+      <rect width="24" height="5.33" fill="currentColor" className="text-india-saffron" />
+      <rect y="5.33" width="24" height="5.33" fill="white" />
+      <rect y="10.67" width="24" height="5.33" fill="currentColor" className="text-india-green" />
+    </svg>
+  );
+}
+
+function TopBanner() {
+  return (
+    <div className="sticky top-0 z-50 h-8 w-full bg-surface-2/90 backdrop-blur-sm">
+      <div className="mx-auto flex h-full max-w-7xl items-center justify-center gap-2 px-6 text-xs font-medium text-foreground/80">
+        <IndiaFlag className="h-3.5 w-auto rounded-sm" />
+        <span>Made in India</span>
+        <span className="text-foreground/40">·</span>
+        <span>Made for India</span>
+      </div>
+    </div>
+  );
+}
+
+function IndiaBadge() {
+  return (
+    <span className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground/80 shadow-sm">
+      <span className="flex gap-0.5">
+        <span className="h-2 w-2 rounded-full bg-india-saffron" />
+        <span className="h-2 w-2 rounded-full bg-white ring-1 ring-border" />
+        <span className="h-2 w-2 rounded-full bg-india-green" />
+      </span>
+      <span>Made in India</span>
+      <span className="text-foreground/40">·</span>
+      <span>Made for India</span>
+    </span>
+  );
+}
+
 export const Route = createFileRoute("/")({
   component: LandingPage,
   head: () => ({
