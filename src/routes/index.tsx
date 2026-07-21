@@ -360,7 +360,7 @@ function LogoCloud() {
 
 function Pain() {
   return (
-    <section className="relative py-28">
+    <section className="relative py-20">
       <div className="mx-auto max-w-4xl px-6 text-center">
         <Reveal>
           <SectionLabel>The Problem</SectionLabel>
@@ -452,7 +452,7 @@ const features = [
 
 function Features() {
   return (
-    <section id="features" className="relative bg-surface py-28">
+    <section id="features" className="relative bg-surface py-20">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
@@ -490,7 +490,7 @@ function Compliance() {
     { k: "Section 10A", v: "Contracts formed electronically, NDAs, offer letters, vendor agreements, are enforceable exactly like paper." },
   ];
   return (
-    <section id="compliance" className="relative overflow-hidden py-28">
+    <section id="compliance" className="relative overflow-hidden py-20">
       <div className="relative mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2 lg:items-center">
         <div>
           <Reveal>
@@ -547,7 +547,7 @@ function Compliance() {
 
 function Testimonial() {
   return (
-    <section className="relative bg-surface py-28">
+    <section className="relative bg-surface py-20">
       <div className="mx-auto max-w-4xl px-6">
         <Reveal>
           <figure className="relative rounded-3xl border border-border bg-white p-10 shadow-sm md:p-14">
@@ -634,7 +634,7 @@ const tiers = [
 
 function Pricing() {
   return (
-    <section id="pricing" className="relative py-28">
+    <section id="pricing" className="relative py-20">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
@@ -730,7 +730,7 @@ const faqs = [
 function Faq() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="relative bg-surface py-28">
+    <section id="faq" className="relative bg-surface py-20">
       <div className="mx-auto max-w-3xl px-6">
         <Reveal>
           <SectionLabel>FAQ</SectionLabel>
@@ -775,7 +775,7 @@ function Faq() {
 
 function ClosingCTA() {
   return (
-    <section id="demo" className="relative py-28">
+    <section id="demo" className="relative py-20">
       <div className="mx-auto max-w-5xl px-6">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl bg-hero-blue p-10 text-center md:p-16">
