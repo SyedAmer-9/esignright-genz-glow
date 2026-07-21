@@ -438,7 +438,7 @@ function Features() {
           {features.map((f, i) => (
             <Reveal key={f.title} delay={i * 0.05}>
               <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-signal/30 hover:shadow-[0_20px_50px_-25px_oklch(0.4_0.15_258/0.45)]">
-                <div className="grid h-11 w-11 place-items-center rounded-xl bg-signal/10 text-signal">
+                <div className="grid h-11 w-11 place-items-center rounded-xl bg-signal/10 text-signal transition-all duration-300 group-hover:bg-signal group-hover:text-signal-foreground group-hover:rotate-[-6deg]">
                   <f.icon className="h-5 w-5" />
                 </div>
                 <h3 className="mt-5 text-lg font-semibold">{f.title}</h3>
