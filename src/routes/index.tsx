@@ -507,35 +507,35 @@ function Compliance() {
               photo, is built to answer exactly those questions.
             </p>
           </Reveal>
-          <Reveal delay={0.15}>
-            <div className="overflow-hidden rounded-3xl border border-border bg-white shadow-sm">
-              <img
-                src={auditIllustrationAsset.url}
-                alt="Audit trail with signer location and identity verification"
-                loading="lazy"
-                decoding="async"
-                className="h-auto w-full"
-              />
-            </div>
-          </Reveal>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-1">
-          {items.map((it, i) => (
-            <Reveal key={it.k} delay={i * 0.06}>
-              <div className="group relative flex items-start gap-5 rounded-2xl border border-border bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-signal/40 hover:shadow-md">
-                <div className="flex shrink-0 flex-col items-center gap-2 border-r border-border/70 pr-5">
-                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-signal/10 text-signal ring-1 ring-signal/20">
-                    <Check className="h-5 w-5" />
+          <div className="grid gap-3 sm:grid-cols-1">
+            {items.map((it, i) => (
+              <Reveal key={it.k} delay={0.15 + i * 0.06}>
+                <div className="group relative flex items-start gap-5 rounded-2xl border border-border bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-signal/40 hover:shadow-md">
+                  <div className="flex shrink-0 flex-col items-center gap-2 border-r border-border/70 pr-5">
+                    <div className="grid h-10 w-10 place-items-center rounded-xl bg-signal/10 text-signal ring-1 ring-signal/20">
+                      <Check className="h-5 w-5" />
+                    </div>
+                    <div className="font-display text-[11px] font-semibold uppercase tracking-wider text-signal">
+                      {it.k}
+                    </div>
                   </div>
-                  <div className="font-display text-[11px] font-semibold uppercase tracking-wider text-signal">
-                    {it.k}
-                  </div>
+                  <p className="pt-1 text-sm leading-relaxed text-foreground/75">{it.v}</p>
                 </div>
-                <p className="pt-1 text-sm leading-relaxed text-foreground/75">{it.v}</p>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            ))}
+          </div>
         </div>
+        <Reveal delay={0.15}>
+          <div className="overflow-hidden rounded-3xl border border-border bg-white shadow-sm">
+            <img
+              src={auditIllustrationAsset.url}
+              alt="Audit trail with signer location and identity verification"
+              loading="lazy"
+              decoding="async"
+              className="h-auto w-full"
+            />
+          </div>
+        </Reveal>
       </div>
     </section>
   );
