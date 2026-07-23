@@ -393,7 +393,7 @@ function LogoCloud() {
                     src={logo.src}
                     alt={`${logo.name} logo`}
                     loading="lazy"
-                    className="h-12 w-auto max-w-[170px] object-contain opacity-100 transition duration-300 group-hover:opacity-70 group-hover:grayscale"
+                    className="h-12 w-auto max-w-[170px] object-contain opacity-70 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0"
                   />
                 ) : (
                   <span className="font-display text-xl font-semibold tracking-tight text-foreground/80 transition duration-300 group-hover:text-muted-foreground group-hover:grayscale">
