@@ -586,13 +586,13 @@ function Compliance() {
           </div>
         </div>
         <Reveal delay={0.15} className="lg:mt-72">
-          <div className="overflow-hidden rounded-3xl border border-border bg-white shadow-sm">
+          <div className="overflow-hidden rounded-3xl border border-border bg-surface-2 p-6 shadow-sm md:p-8">
             <img
               src={auditIllustrationAsset.url}
               alt="Audit trail with signer location and identity verification"
               loading="lazy"
               decoding="async"
-              className="h-auto w-full"
+              className="h-auto w-full rounded-2xl"
             />
           </div>
         </Reveal>
