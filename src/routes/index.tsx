@@ -373,11 +373,11 @@ const clientLogos = [
 function LogoCloud() {
   return (
     <section className="border-b border-border/60 bg-background">
-      <div className="mx-auto max-w-7xl px-6 py-16">
+      <div className="mx-auto max-w-7xl px-6 py-16 md:py-20">
         <p className="text-center text-xs uppercase tracking-[0.28em] text-muted-foreground">
           Trusted by teams like
         </p>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-16 gap-y-8 md:gap-x-20">
+        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:gap-x-10 lg:grid-cols-5">
           {clientLogos.map((logo) => (
             <a
               key={logo.name}
@@ -385,20 +385,25 @@ function LogoCloud() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={logo.name}
-              className="group inline-flex h-12 items-center"
+              className="group flex h-full flex-col items-center justify-start gap-3"
             >
-              {logo.hasLogo && logo.src ? (
-                <img
-                  src={logo.src}
-                  alt={`${logo.name} logo`}
-                  loading="lazy"
-                  className="h-10 w-auto max-w-[180px] object-contain grayscale opacity-70 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
-                />
-              ) : (
-                <span className="font-display text-xl font-semibold tracking-tight text-muted-foreground/80 transition duration-300 group-hover:text-foreground">
-                  {logo.name}
-                </span>
-              )}
+              <div className="flex h-14 w-full items-center justify-center">
+                {logo.hasLogo && logo.src ? (
+                  <img
+                    src={logo.src}
+                    alt={`${logo.name} logo`}
+                    loading="lazy"
+                    className="h-12 w-auto max-w-[170px] object-contain opacity-100 transition duration-300 group-hover:opacity-70 group-hover:grayscale"
+                  />
+                ) : (
+                  <span className="font-display text-xl font-semibold tracking-tight text-foreground/80 transition duration-300 group-hover:text-muted-foreground group-hover:grayscale">
+                    {logo.name}
+                  </span>
+                )}
+              </div>
+              <span className="text-center text-sm font-medium text-foreground/80 transition duration-300 group-hover:text-muted-foreground">
+                {logo.name}
+              </span>
             </a>
           ))}
         </div>
@@ -619,19 +624,18 @@ const testimonials: {
     company: "Unicom Tec",
     website: "https://unicomtec.com/",
   },
-  // Pending CEO approval — uncomment to enable:
-  // {
-  //   quote:
-  //     "We are using eSignRight since a while. It is easy to use, user-friendly and lets us initiate documents for signatures. We can even create templates and reuse them whenever we want.",
-  //   company: "Techlogyx",
-  //   website: "https://techlogyx.com/",
-  // },
-  // {
-  //   quote:
-  //     "eSignRight has made managing global signings incredibly seamless and effortless, significantly cutting down our document turnaround time. The detailed audit trails and automated workflows provide exceptional security and control, making this an indispensable asset for our operations.",
-  //   company: "Amzur",
-  //   website: "http://www.amzur.com",
-  // },
+  {
+    quote:
+      "We are using eSignRight since a while. It is easy to use, user-friendly and lets us initiate documents for signatures. We can even create templates and reuse them whenever we want.",
+    company: "Techlogyx",
+    website: "https://techlogyx.com/",
+  },
+  {
+    quote:
+      "eSignRight has made managing global signings incredibly seamless and effortless, significantly cutting down our document turnaround time. The detailed audit trails and automated workflows provide exceptional security and control, making this an indispensable asset for our operations.",
+    company: "Amzur",
+    website: "http://www.amzur.com",
+  },
 ];
 
 function Testimonial() {
