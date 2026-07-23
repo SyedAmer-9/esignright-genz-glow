@@ -657,6 +657,17 @@ function CustomWorkflows() {
   return (
     <section id="custom-workflows" className="relative overflow-hidden py-20">
       <div className="relative mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2 lg:items-center">
+        <Reveal delay={0.15}>
+          <div className="overflow-hidden rounded-3xl border border-border bg-white shadow-sm">
+            <img
+              src="/assets/custom-workflows.jpg"
+              alt="Custom signing workflow with sequential recipients and completion status"
+              loading="lazy"
+              decoding="async"
+              className="h-auto w-full"
+            />
+          </div>
+        </Reveal>
         <div className="space-y-6">
           <Reveal>
             <SectionLabel>Save Time</SectionLabel>
@@ -679,17 +690,6 @@ function CustomWorkflows() {
             ))}
           </ul>
         </div>
-        <Reveal delay={0.15}>
-          <div className="overflow-hidden rounded-3xl border border-border bg-white shadow-sm">
-            <img
-              src="/assets/custom-workflows.jpg"
-              alt="Custom signing workflow with sequential recipients and completion status"
-              loading="lazy"
-              decoding="async"
-              className="h-auto w-full"
-            />
-          </div>
-        </Reveal>
       </div>
     </section>
   );
