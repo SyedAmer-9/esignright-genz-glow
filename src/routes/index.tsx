@@ -593,36 +593,108 @@ function Testimonial() {
             <div className="absolute left-10 top-8 font-display text-6xl leading-none text-signal/60">
               &ldquo;
             </div>
-            <blockquote className="pl-10 text-xl leading-relaxed text-foreground md:text-2xl">
-              We needed to know exactly who signed what, and when, for our client contracts. The
-              audit trail gave us that without adding a new tool our team had to learn.
-            </blockquote>
-            <figcaption className="mt-8 flex items-center gap-4 pl-10">
-              <div className="h-11 w-11 rounded-full bg-signal/20 ring-2 ring-signal/40" />
-              <div>
-                <div className="text-sm font-semibold">Operations Lead</div>
-                <div className="text-xs text-muted-foreground">IT Staffing Firm · Placeholder</div>
-              </div>
-            </figcaption>
-          </figure>
-        </Reveal>
+const testimonials: {
+  quote: string;
+  company: string;
+  website: string;
+  logo?: string;
+}[] = [
+  {
+    quote:
+      "eSignRight helped us to initiate documents easily and get signatures on time. It is user friendly and saves a lot of time.",
+    company: "Cloudspace Tek",
+    website: "https://www.cloudspacetek.com/",
+    logo: "/assets/logos/cloudspacetek.png",
+  },
+  {
+    quote:
+      "We've been using eSignRight for more than a year and it is user friendly and saves a lot of time. We use it to initiate our internal documents with our employees.",
+    company: "Xtrac IT",
+    website: "https://xtracit.com/",
+    logo: "/assets/logos/xtracit.png",
+  },
+  {
+    quote:
+      "Before, we used various other signing tools, but OnBlick's eSignRight is very helpful and the support team helps us if we have any questions or issues. It is easy to use.",
+    company: "Unicom Tec",
+    website: "https://unicomtec.com/",
+  },
+  // Pending CEO approval — uncomment to enable:
+  // {
+  //   quote:
+  //     "We are using eSignRight since a while. It is easy to use, user-friendly and lets us initiate documents for signatures. We can even create templates and reuse them whenever we want.",
+  //   company: "Techlogyx",
+  //   website: "https://techlogyx.com/",
+  // },
+  // {
+  //   quote:
+  //     "eSignRight has made managing global signings incredibly seamless and effortless, significantly cutting down our document turnaround time. The detailed audit trails and automated workflows provide exceptional security and control, making this an indispensable asset for our operations.",
+  //   company: "Amzur",
+  //   website: "http://www.amzur.com",
+  // },
+];
+
+function Testimonial() {
+  return (
+    <section id="testimonials" className="relative bg-surface py-20">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-3xl text-center">
+          <Reveal>
+            <SectionLabel>LOVED BY TEAMS</SectionLabel>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="mt-6 text-4xl font-semibold leading-tight md:text-5xl">
+              What customers say
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mt-4 text-base text-foreground/70">
+              Real teams using eSignRight to move documents, contracts, and approvals forward.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {testimonials.map((t, i) => (
+            <Reveal key={t.company} delay={i * 0.06}>
+              <figure className="group flex h-full flex-col rounded-2xl border border-border bg-white p-8 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_20px_50px_-25px_oklch(0.4_0.15_258/0.35)]">
+                <div className="font-display text-5xl leading-none text-signal/50">&ldquo;</div>
+                <blockquote className="mt-3 flex-1 text-[15px] leading-relaxed text-foreground/85 [text-wrap:balance]">
+                  {t.quote}
+                </blockquote>
+                <div className="mt-6 border-t border-border/70 pt-5">
+                  <a
+                    href={t.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 transition-opacity hover:opacity-80"
+                  >
+                    {t.logo ? (
+                      <img
+                        src={t.logo}
+                        alt={`${t.company} logo`}
+                        loading="lazy"
+                        className="h-7 w-auto max-w-[130px] object-contain"
+                      />
+                    ) : (
+                      <span className="grid h-8 w-8 place-items-center rounded-full bg-signal/10 font-display text-sm font-semibold text-signal">
+                        {t.company.charAt(0)}
+                      </span>
+                    )}
+                    <span className="font-display text-sm font-semibold text-foreground">
+                      {t.company}
+                    </span>
+                  </a>
+                </div>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
 
-const tiers = [
-  {
-    name: "Free Forever",
-    price: "₹0",
-    per: "",
-    tagline: "Full audit trail from day one.",
-    features: ["1 user", "10 documents / month", "3 templates", "Geo + photo capture", "Email support"],
-    cta: "Start free",
-    href: SIGNUP_URL,
-    external: false,
-    highlight: false,
-  },
   {
     name: "Starter",
     price: "₹699",
