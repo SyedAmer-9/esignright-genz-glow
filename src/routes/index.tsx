@@ -620,7 +620,7 @@ const testimonials: {
   },
   {
     quote:
-      "Before, we used various other signing tools, but OnBlick's eSignRight is very helpful and the support team helps us if we have any questions or issues. It is easy to use.",
+      "Before, we used various other signing tools, but eSignRight is very helpful and the support team helps us if we have any questions or issues. It is easy to use.",
     company: "Unicom Tec",
     website: "https://unicomtec.com/",
   },
