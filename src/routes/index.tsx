@@ -27,7 +27,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 const logoAsset = { url: "/assets/esignright-logo.png" };
-const videoThumbAsset = { url: "/video-thumb.png" };
+const videoThumbAsset = { url: "/assets/video-thumb.png" };
 const auditIllustrationAsset = { url: "/assets/audit-illustration.png" };
 
 const VIDEO_BUCKET = "videobucket";
