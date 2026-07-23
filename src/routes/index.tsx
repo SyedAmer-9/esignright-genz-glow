@@ -393,10 +393,10 @@ function LogoCloud() {
                     src={logo.src}
                     alt={`${logo.name} logo`}
                     loading="lazy"
-                    className="h-12 w-auto max-w-[170px] object-contain opacity-100 transition duration-300 group-hover:opacity-70 group-hover:grayscale"
+                    className="h-12 w-auto max-w-[170px] object-contain opacity-70 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0"
                   />
                 ) : (
-                  <span className="font-display text-xl font-semibold tracking-tight text-foreground/80 transition duration-300 group-hover:text-muted-foreground group-hover:grayscale">
+                  <span className="font-display text-xl font-semibold tracking-tight text-foreground/80 transition duration-300 group-hover:text-foreground">
                     {logo.name}
                   </span>
                 )}
@@ -834,6 +834,10 @@ function Pricing() {
 const faqs = [
   {
     q: "Is this admissible as evidence in court?",
+    a: "We're not a law firm, so for anything high-stakes or regulatory, confirm with your own legal counsel.",
+  },
+  {
+    q: "Is this admissible as evidence in court?",
     a: "For standard commercial documents (NDAs, offer letters, vendor agreements), a strong audit trail is generally valid. Courts weigh authenticity, integrity, and timestamp reliability, all of which the audit trail is built to capture.",
   },
   {
@@ -967,11 +971,11 @@ function Footer() {
               </li>
               <li className="flex items-start gap-2.5">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-signal" />
-                <a href="tel:+19720200559" className="hover:text-foreground">+1 (972) 020-05599</a>
+                <a href="tel:+919573438785" className="hover:text-foreground">+91 9573438785</a>
               </li>
               <li className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-signal" />
-                <span>400 E Royal Lane, Suite 218<br />Irving, TX 75039</span>
+                <span>Hyderabad, India</span>
               </li>
             </ul>
           </div>
