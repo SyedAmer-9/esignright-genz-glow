@@ -834,6 +834,10 @@ function Pricing() {
 const faqs = [
   {
     q: "Is this admissible as evidence in court?",
+    a: "We're not a law firm, so for anything high-stakes or regulatory, confirm with your own legal counsel.",
+  },
+  {
+    q: "Is this admissible as evidence in court?",
     a: "For standard commercial documents (NDAs, offer letters, vendor agreements), a strong audit trail is generally valid. Courts weigh authenticity, integrity, and timestamp reliability, all of which the audit trail is built to capture.",
   },
   {
