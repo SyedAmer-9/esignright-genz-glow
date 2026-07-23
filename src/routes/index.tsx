@@ -1049,6 +1049,7 @@ function LandingPage() {
         <LogoCloud />
         <Pain />
         <Compliance />
+        <Workflows />
         <Features />
         <Testimonial />
         <Pricing />
