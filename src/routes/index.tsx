@@ -365,9 +365,9 @@ function Hero() {
 const clientLogos = [
   { name: "Cloudspace Tek", src: "/assets/logos/cloudspacetek.png", href: "https://www.cloudspacetek.com/", hasLogo: true },
   { name: "Xtrac IT", src: "/assets/logos/xtracit.png", href: "https://xtracit.com/", hasLogo: true },
-  { name: "Unicom Tec", href: "https://unicomtec.com/", hasLogo: false },
-  { name: "Techlogyx", href: "https://techlogyx.com/", hasLogo: false },
-  { name: "Amzur", href: "http://www.amzur.com", hasLogo: false },
+  { name: "Unicom Tec", href: "https://unicomtec.com/", hasLogo: false, hoverColor: "#7a00df" },
+  { name: "Techlogyx", href: "https://techlogyx.com/", hasLogo: false, hoverColor: "#1b1464" },
+  { name: "Amzur", href: "http://www.amzur.com", hasLogo: false, hoverColor: "#2563eb" },
 ];
 
 function LogoCloud() {
