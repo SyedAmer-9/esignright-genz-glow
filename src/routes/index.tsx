@@ -624,19 +624,18 @@ const testimonials: {
     company: "Unicom Tec",
     website: "https://unicomtec.com/",
   },
-  // Pending CEO approval — uncomment to enable:
-  // {
-  //   quote:
-  //     "We are using eSignRight since a while. It is easy to use, user-friendly and lets us initiate documents for signatures. We can even create templates and reuse them whenever we want.",
-  //   company: "Techlogyx",
-  //   website: "https://techlogyx.com/",
-  // },
-  // {
-  //   quote:
-  //     "eSignRight has made managing global signings incredibly seamless and effortless, significantly cutting down our document turnaround time. The detailed audit trails and automated workflows provide exceptional security and control, making this an indispensable asset for our operations.",
-  //   company: "Amzur",
-  //   website: "http://www.amzur.com",
-  // },
+  {
+    quote:
+      "We are using eSignRight since a while. It is easy to use, user-friendly and lets us initiate documents for signatures. We can even create templates and reuse them whenever we want.",
+    company: "Techlogyx",
+    website: "https://techlogyx.com/",
+  },
+  {
+    quote:
+      "eSignRight has made managing global signings incredibly seamless and effortless, significantly cutting down our document turnaround time. The detailed audit trails and automated workflows provide exceptional security and control, making this an indispensable asset for our operations.",
+    company: "Amzur",
+    website: "http://www.amzur.com",
+  },
 ];
 
 function Testimonial() {
