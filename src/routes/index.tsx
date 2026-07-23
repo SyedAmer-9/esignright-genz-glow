@@ -362,28 +362,42 @@ function Hero() {
   );
 }
 
+const clientLogos = [
+  { name: "Cloudspace Tek", src: "/assets/logos/cloudspacetek.png", href: "https://www.cloudspacetek.com/" },
+  { name: "Xtrac IT", src: "/assets/logos/xtracit.png", href: "https://xtracit.com/" },
+];
+
 function LogoCloud() {
-  const placeholders = ["ACME", "NORTHWIND", "STARK", "UMBRELLA", "MONARCH", "AXIOM"];
   return (
     <section className="border-b border-border/60 bg-background">
       <div className="mx-auto max-w-7xl px-6 py-10">
         <p className="text-center text-xs uppercase tracking-[0.24em] text-muted-foreground">
-          Client logos, placeholders (CS team to provide)
+          Trusted by teams like
         </p>
-        <div className="mt-6 grid grid-cols-2 items-center gap-8 opacity-70 sm:grid-cols-3 md:grid-cols-6">
-          {placeholders.map((name) => (
-            <div
-              key={name}
-              className="text-center font-display text-sm font-semibold tracking-widest text-foreground/60"
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-14 gap-y-6">
+          {clientLogos.map((logo) => (
+            <a
+              key={logo.name}
+              href={logo.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={logo.name}
+              className="group inline-flex items-center"
             >
-              {name}
-            </div>
+              <img
+                src={logo.src}
+                alt={`${logo.name} logo`}
+                loading="lazy"
+                className="h-9 w-auto max-w-[160px] object-contain grayscale opacity-70 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+              />
+            </a>
           ))}
         </div>
       </div>
     </section>
   );
 }
+
 
 function Pain() {
   return (
