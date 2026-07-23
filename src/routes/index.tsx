@@ -585,7 +585,7 @@ function Compliance() {
             ))}
           </div>
         </div>
-        <Reveal delay={0.15} className="lg:mt-72">
+        <Reveal delay={0.15} className="lg:mt-52">
           <div className="overflow-hidden rounded-3xl border border-border bg-white shadow-sm">
             <img
               src={auditIllustrationAsset.url}
