@@ -584,15 +584,6 @@ function Compliance() {
   );
 }
 
-function Testimonial() {
-  return (
-    <section className="relative bg-surface py-20">
-      <div className="mx-auto max-w-4xl px-6">
-        <Reveal>
-          <figure className="relative rounded-3xl border border-border bg-white p-10 shadow-sm md:p-14">
-            <div className="absolute left-10 top-8 font-display text-6xl leading-none text-signal/60">
-              &ldquo;
-            </div>
 const testimonials: {
   quote: string;
   company: string;
