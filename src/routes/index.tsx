@@ -601,6 +601,53 @@ function Compliance() {
   );
 }
 
+function Workflows() {
+  const points = [
+    "Manage users, roles, and document access from one dashboard",
+    "Monitor document status in real time with intelligent alerts",
+    "Track activity and performance by team or individual",
+  ];
+  return (
+    <section id="workflows" className="relative overflow-hidden py-20">
+      <div className="relative mx-auto grid max-w-7xl gap-16 px-6 lg:grid-cols-2 lg:items-center">
+        <div className="space-y-6">
+          <Reveal>
+            <SectionLabel>Boost Teamwork</SectionLabel>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="text-4xl font-semibold leading-tight md:text-5xl">
+              Flexible Document Workflows
+            </h2>
+          </Reveal>
+          <ul className="space-y-4 pt-2">
+            {points.map((p, i) => (
+              <Reveal key={p} delay={0.1 + i * 0.06}>
+                <li className="flex items-start gap-3 text-lg text-foreground/80">
+                  <span className="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-signal/10 text-signal ring-1 ring-signal/20">
+                    <Check className="h-4 w-4" />
+                  </span>
+                  <span>{p}</span>
+                </li>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+        <Reveal delay={0.15}>
+          <div className="overflow-hidden rounded-3xl border border-border bg-white shadow-sm">
+            <img
+              src="/assets/workflows-illustration.jpg"
+              alt="Flexible document workflows with signer, approver, and notifier roles"
+              loading="lazy"
+              decoding="async"
+              className="h-auto w-full"
+            />
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 const testimonials: {
   quote: string;
   company: string;
