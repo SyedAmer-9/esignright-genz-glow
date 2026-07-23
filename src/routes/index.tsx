@@ -613,7 +613,7 @@ const testimonials: {
   },
   {
     quote:
-      "We've been using eSignRight for more than a year and it is user friendly and saves a lot of time. We use it to initiate our internal documents with our employees.",
+      "We've been using eSignRight for more than a year and it is user friendly and saves time. We use it to initiate our internal documents with our employees.",
     company: "Xtrac IT",
     website: "https://xtracit.com/",
     logo: "/assets/logos/xtracit.png",
