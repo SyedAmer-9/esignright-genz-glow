@@ -1097,6 +1097,7 @@ function LandingPage() {
         <Pain />
         <Compliance />
         <Workflows />
+        <CustomWorkflows />
         <Features />
         <Testimonial />
         <Pricing />
