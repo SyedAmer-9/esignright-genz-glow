@@ -365,9 +365,9 @@ function Hero() {
 const clientLogos = [
   { name: "Cloudspace Tek", src: "/assets/logos/cloudspacetek.png", href: "https://www.cloudspacetek.com/", hasLogo: true },
   { name: "Xtrac IT", src: "/assets/logos/xtracit.png", href: "https://xtracit.com/", hasLogo: true },
-  { name: "Unicom Tec", href: "https://unicomtec.com/", hasLogo: false },
-  { name: "Techlogyx", href: "https://techlogyx.com/", hasLogo: false },
-  { name: "Amzur", href: "http://www.amzur.com", hasLogo: false },
+  { name: "Unicom Tec", href: "https://unicomtec.com/", hasLogo: false, hoverColor: "#7a00df" },
+  { name: "Techlogyx", href: "https://techlogyx.com/", hasLogo: false, hoverColor: "#1b1464" },
+  { name: "Amzur", href: "http://www.amzur.com", hasLogo: false, hoverColor: "#2563eb" },
 ];
 
 function LogoCloud() {
@@ -396,7 +396,10 @@ function LogoCloud() {
                     className="h-12 w-auto max-w-[170px] object-contain opacity-70 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0"
                   />
                 ) : (
-                  <span className="font-display text-xl font-semibold tracking-tight text-foreground/80 transition duration-300 group-hover:text-foreground">
+                  <span
+                    className="font-display text-xl font-semibold tracking-tight text-foreground/80 transition-colors duration-300 group-hover:[color:var(--brand-hover)]"
+                    style={{ ["--brand-hover" as any]: logo.hoverColor }}
+                  >
                     {logo.name}
                   </span>
                 )}
