@@ -363,18 +363,21 @@ function Hero() {
 }
 
 const clientLogos = [
-  { name: "Cloudspace Tek", src: "/assets/logos/cloudspacetek.png", href: "https://www.cloudspacetek.com/" },
-  { name: "Xtrac IT", src: "/assets/logos/xtracit.png", href: "https://xtracit.com/" },
+  { name: "Cloudspace Tek", src: "/assets/logos/cloudspacetek.png", href: "https://www.cloudspacetek.com/", hasLogo: true },
+  { name: "Xtrac IT", src: "/assets/logos/xtracit.png", href: "https://xtracit.com/", hasLogo: true },
+  { name: "Unicom Tec", href: "https://unicomtec.com/", hasLogo: false },
+  { name: "Techlogyx", href: "https://techlogyx.com/", hasLogo: false },
+  { name: "Amzur", href: "http://www.amzur.com", hasLogo: false },
 ];
 
 function LogoCloud() {
   return (
     <section className="border-b border-border/60 bg-background">
-      <div className="mx-auto max-w-7xl px-6 py-10">
-        <p className="text-center text-xs uppercase tracking-[0.24em] text-muted-foreground">
+      <div className="mx-auto max-w-7xl px-6 py-16">
+        <p className="text-center text-xs uppercase tracking-[0.28em] text-muted-foreground">
           Trusted by teams like
         </p>
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-14 gap-y-6">
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-16 gap-y-8 md:gap-x-20">
           {clientLogos.map((logo) => (
             <a
               key={logo.name}
@@ -382,14 +385,20 @@ function LogoCloud() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={logo.name}
-              className="group inline-flex items-center"
+              className="group inline-flex h-12 items-center"
             >
-              <img
-                src={logo.src}
-                alt={`${logo.name} logo`}
-                loading="lazy"
-                className="h-9 w-auto max-w-[160px] object-contain grayscale opacity-70 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
-              />
+              {logo.hasLogo && logo.src ? (
+                <img
+                  src={logo.src}
+                  alt={`${logo.name} logo`}
+                  loading="lazy"
+                  className="h-10 w-auto max-w-[180px] object-contain grayscale opacity-70 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                />
+              ) : (
+                <span className="font-display text-xl font-semibold tracking-tight text-muted-foreground/80 transition duration-300 group-hover:text-foreground">
+                  {logo.name}
+                </span>
+              )}
             </a>
           ))}
         </div>
