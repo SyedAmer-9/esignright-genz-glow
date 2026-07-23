@@ -1001,8 +1001,8 @@ function LandingPage() {
         <Hero />
         <LogoCloud />
         <Pain />
-        <Features />
         <Compliance />
+        <Features />
         <Testimonial />
         <Pricing />
         <Faq />
