@@ -686,6 +686,18 @@ function Testimonial() {
   );
 }
 
+const tiers = [
+  {
+    name: "Free Forever",
+    price: "₹0",
+    per: "",
+    tagline: "Full audit trail from day one.",
+    features: ["1 user", "10 documents / month", "3 templates", "Geo + photo capture", "Email support"],
+    cta: "Start free",
+    href: SIGNUP_URL,
+    external: false,
+    highlight: false,
+  },
   {
     name: "Starter",
     price: "₹699",
