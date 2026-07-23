@@ -971,11 +971,11 @@ function Footer() {
               </li>
               <li className="flex items-start gap-2.5">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-signal" />
-                <a href="tel:+19720200559" className="hover:text-foreground">+1 (972) 020-05599</a>
+                <a href="tel:+919573438785" className="hover:text-foreground">+91 9573438785</a>
               </li>
               <li className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-signal" />
-                <span>400 E Royal Lane, Suite 218<br />Irving, TX 75039</span>
+                <span>Hyderabad, India</span>
               </li>
             </ul>
           </div>
