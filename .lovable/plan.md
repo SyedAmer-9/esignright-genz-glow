@@ -1,56 +1,71 @@
+# Plan: New Feature Cards, Pricing Line Items & Sliding Integrations
 
-## Goal
-Add real customer proof to the landing page using the 5 testimonials the CS team provided, and show client logos for the companies that approved logo use.
+## Overview
+Three changes to `src/routes/index.tsx`: expand the Features grid with three new capability cards, add those capabilities as line items in the Business and Enterprise pricing tiers, and add a new sliding "Integrations" logo strip (Google Drive, OneDrive, Dropbox).
 
-## Placement
-Insert a new `Testimonials` section in `src/routes/index.tsx` between the existing Features ("What proof looks like") section and the Compliance section. This puts social proof right after the product story and before the legal/trust content — the natural conversion path.
+---
 
-Update the small "Trusted by 300+ teams" strip under the hero to become a lightweight logo marquee (grayscale, hover-color) using only the approved logos.
+## 1. Features Grid — 3 New Cards (edit 1, add 2)
 
-## Content rules (respecting CS team permissions)
-- **Show quote + company name + logo + website link:** Cloudspace Tek, Xtrac IT
-- **Show quote + company name + website link, no logo:** Unicom Tec
-- **Hold back for now (pending CEO approval):** Techlogyx, Amzur — keep their data ready in a commented-out block in the same file so we can flip them on with a one-line change once approval lands. Not rendered until then.
+**File:** `src/routes/index.tsx`
 
-So the live section ships with 3 testimonials and 2 logos. Once approvals come in, we uncomment to reach 5 testimonials and up to 4 logos.
+**Imports:** Add `DownloadCloud`, `ClipboardCheck`, `CloudDownload` to the lucide-react import block (lines 3-26).
 
-## Section design
-Header: section label "LOVED BY TEAMS" + heading "What customers say" (matches existing SectionLabel / heading pattern already used on the page).
+**Edit existing card** (currently "Secure Audit Trail", line 465-468) → replace with:
+- Icon: `ClipboardCheck`
+- Title: **Comprehensive Activity Logs**
+- Body: "Maintain total visibility. Track exactly who viewed, sent, or signed documents with detailed audit trails — perfect for teams sharing centralized accounts."
 
-Layout: responsive card grid — 1 column mobile, 2 columns md, 3 columns lg. Cards use the same white surface + subtle border + rounded-lg + hover lift already used by the compliance cards, so it feels native to the page (no new visual pattern).
+**Add two new cards** to the `features` array (after the last existing entry, before the closing `]` at line 509):
 
-Each card:
-- Opening quote mark (decorative, muted)
-- Testimonial text (Lato, body size, `text-wrap: balance`)
-- Divider
-- Company logo (if approved) OR company monogram fallback (if not) — fixed height ~28px, `object-contain`
-- Company name (Montserrat semibold) linking to their website, `target="_blank"` + `rel="noopener noreferrer"`
+| Icon | Title | Body |
+|------|-------|------|
+| `DownloadCloud` | One-Click Bulk Downloads | Stop downloading files one by one. Export all your completed, legally binding documents instantly in a single batch. |
+| `CloudDownload` | Cloud Drive Auto-Sync | Connect your personal or company-wide Google Drive, OneDrive, or Dropbox. Signed documents automatically sync to your secure folders the moment they are completed. |
 
-Below the grid: a thin horizontal logo strip ("Trusted by teams like") showing the approved logos larger, grayscale by default, full color on hover. This replaces the current generic "Trusted by 300+ teams" line — we keep the "300+ teams" copy above it.
+**Grid layout note:** The grid uses `flex flex-wrap justify-center`, so a partial final row (15 cards in a 4-col grid → last row of 3) auto-centers. No layout change needed.
 
-## Animations
-Reuse existing motion vocabulary — no new CSS keyframes:
-- Cards fade/slide in on scroll via the existing intersection pattern already used elsewhere on the page (staggered by index).
-- Hover: subtle `translate-y-[-2px]` + shadow, matching compliance cards.
-- Logo strip: gentle opacity transition on hover (grayscale → color).
+---
 
-## Assets
-Download the two approved logos from the company sites, optimize, and drop into `public/assets/logos/`:
-- `public/assets/logos/cloudspacetek.png` (or .svg if available)
-- `public/assets/logos/xtracit.png`
+## 2. Pricing Table — Add Line Items to Business & Enterprise
 
-Reference directly as `/assets/logos/<file>` (same pattern as the existing `/video-thumb.png` and `/assets/esignright-logo.png` — works on Vercel without asset pointers). No Supabase/Lovable asset CDN.
+**File:** `src/routes/index.tsx`, `tiers` array (lines 799-857)
 
-If the site doesn't expose a clean logo asset, I'll flag it and ask for a direct upload.
+**Business tier** (line 827-834) — append three items to the `features` array:
+- `"Cloud Drive Auto-Sync (Google Drive, OneDrive, Dropbox)"`
+- `"Advanced Activity & Audit Logs"`
+- `"Bulk Document Download"`
 
-## Technical details
-- All changes confined to `src/routes/index.tsx` plus new logo files under `public/assets/logos/`.
-- New data lives as a typed `const testimonials` array at the top of the file, with a `logoApproved: boolean` flag so hiding/showing an entry is a one-property change.
-- Uses existing `SectionLabel`, spacing (`py-20`), and container widths — no new design tokens, no styles.css changes.
-- Links use `rel="noopener noreferrer"` and `target="_blank"` since they leave the site.
-- Alt text on every logo (`alt="{Company} logo"`) for a11y and SEO.
+**Enterprise tier** (line 845-850) — append the same three items to its `features` array.
 
-## Out of scope
-- No CMS / admin UI to manage testimonials — this is a static array; new quotes are a code edit.
-- No carousel/slider — grid is faster to scan and better on mobile.
-- No pulling logos automatically from client sites at runtime — we host them ourselves for reliability.
+Free Forever and Starter tiers remain unchanged.
+
+---
+
+## 3. Integrations — New Sliding Logo Strip
+
+**File:** `src/routes/index.tsx`
+
+Create a new `Integrations` component with a horizontal CSS marquee (infinite scroll) showing brand logos for **Google Drive, OneDrive, and Dropbox**. The logos will be inline SVGs (simple-icons paths) duplicated for seamless looping.
+
+**Marquee CSS:** Add a `@keyframes marquee` animation to `src/styles.css` (translateX 0 → -50% on a duplicated logo set for seamless loop).
+
+**Component structure:**
+```
+<section> "Integrations" label
+  <div class="marquee-track" animate>
+    [Google Drive] [OneDrive] [Dropbox] [Google Drive] [OneDrive] [Dropbox]  (duplicated for seamless loop)
+  </div>
+</section>
+```
+
+Each logo: inline SVG icon + brand name label, grayscale by default with color-on-hover (matching the existing LogoCloud pattern).
+
+**Placement in page layout** (line 1094-1106 `LandingPage`):
+Insert `<Integrations />` after `<Features />` and before `<Testimonial />`.
+
+---
+
+## Files Changed
+- `src/routes/index.tsx` — feature cards, pricing items, new Integrations component + placement
+- `src/styles.css` — marquee keyframe animation
