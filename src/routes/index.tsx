@@ -12,7 +12,6 @@ import {
   Mail,
   MapPin,
   Phone,
-  
   ChevronDown,
   FileText,
   Files,
@@ -23,6 +22,9 @@ import {
   FolderOpen,
   Webhook,
   BarChart3,
+  DownloadCloud,
+  ClipboardCheck,
+  CloudDownload,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -462,9 +464,9 @@ const features = [
     body: "Easily place signature, text, date, and checkbox fields on any document.",
   },
   {
-    icon: ShieldCheck,
-    title: "Secure Audit Trail",
-    body: "Track every action with AES-encrypted logs for full legal compliance.",
+    icon: ClipboardCheck,
+    title: "Comprehensive Activity Logs",
+    body: "Maintain total visibility. Track exactly who viewed, sent, or signed documents with detailed audit trails — perfect for teams sharing centralized accounts.",
   },
   {
     icon: Fingerprint,
@@ -506,6 +508,16 @@ const features = [
     title: "Dashboards & Reports",
     body: "Use custom dashboards and automated reporting to visualize document activity and signer behavior.",
   },
+  {
+    icon: DownloadCloud,
+    title: "One-Click Bulk Downloads",
+    body: "Stop downloading files one by one. Export all your completed, legally binding documents instantly in a single batch.",
+  },
+  {
+    icon: CloudDownload,
+    title: "Cloud Drive Auto-Sync",
+    body: "Connect your personal or company-wide Google Drive, OneDrive, or Dropbox. Signed documents automatically sync to your secure folders the moment they are completed.",
+  },
 ];
 
 function Features() {
@@ -534,6 +546,75 @@ function Features() {
                 <p className="mt-2 text-sm leading-relaxed text-foreground/70">{f.body}</p>
               </div>
             </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const integrationLogos = [
+  {
+    name: "Google Drive",
+    color: "#4285F4",
+    viewBox: "0 0 24 24",
+    paths: [
+      "M12.01 1.485c-2.082 0-3.754.02-3.743.047c.01.02 1.708 3.001 3.774 6.62l3.76 6.574h3.76c2.081 0 3.753-.02 3.742-.047c-.005-.02-1.708-3.001-3.775-6.62l-3.76-6.574zm-4.76 1.73a789.828 789.861 0 0 0-3.63 6.319L0 15.868l1.89 3.298l1.885 3.297l3.62-6.335l3.618-6.33l-1.88-3.287C8.1 4.704 7.255 3.22 7.25 3.214zm2.259 12.653l-.203.348c-.114.198-.96 1.672-1.88 3.287a423.93 423.948 0 0 1-1.698 2.97c-.01.026 3.24.042 7.222.042h7.244l1.796-3.157c.992-1.734 1.85-3.23 1.906-3.323l.104-.167h-7.249z",
+    ],
+  },
+  {
+    name: "OneDrive",
+    color: "#0078D4",
+    viewBox: "0 0 256 165",
+    paths: [
+      "m154.66 110.682l52.842-50.534c-10.976-42.8-54.57-68.597-97.37-57.62a80 80 0 0 0-46.952 33.51c.817-.02 91.48 74.644 91.48 74.644",
+      "m97.618 45.552l-.002.009a63.7 63.7 0 0 0-33.619-9.543c-.274 0-.544.017-.818.02C27.852 36.476-.432 65.47.005 100.798a63.97 63.97 0 0 0 11.493 35.798l79.165-9.915l60.694-48.94z",
+      "M207.502 60.148a53 53 0 0 0-3.51-.131a51.8 51.8 0 0 0-20.61 4.254l-.002-.005l-32.022 13.475l35.302 43.607l63.11 15.341c13.62-25.283 4.164-56.82-21.12-70.44a52 52 0 0 0-21.148-6.1",
+      "M11.498 136.596a63.91 63.91 0 0 0 52.5 27.417h139.994a51.99 51.99 0 0 0 45.778-27.323l-98.413-58.95z",
+    ],
+  },
+  {
+    name: "Dropbox",
+    color: "#0061FF",
+    viewBox: "0 0 24 24",
+    paths: [
+      "M6 1.807L0 5.629l6 3.822l6.001-3.822zm12 0l-6 3.822l6 3.822l6-3.822zM0 13.274l6 3.822l6.001-3.822L6 9.452zm18-3.822l-6 3.822l6 3.822l6-3.822zM6 18.371l6.001 3.822l6-3.822l-6-3.822z",
+    ],
+  },
+];
+
+function Integrations() {
+  return (
+    <section className="relative overflow-hidden border-y border-border/60 bg-surface py-16">
+      <div className="mx-auto max-w-3xl px-6 text-center">
+        <Reveal>
+          <SectionLabel>Integrations</SectionLabel>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="mt-6 text-3xl font-semibold leading-tight md:text-4xl">
+            Syncs with your favorite cloud drives
+          </h2>
+        </Reveal>
+      </div>
+      <div className="marquee-mask mt-12 overflow-hidden">
+        <div className="flex w-max animate-marquee items-center">
+          {[...integrationLogos, ...integrationLogos].map((logo, i) => (
+            <div
+              key={`int-${i}`}
+              className="group flex shrink-0 flex-col items-center gap-3 px-10"
+              style={{ ["--brand" as any]: logo.color }}
+            >
+              <div className="flex h-12 items-center justify-center text-foreground/40 grayscale transition-all duration-300 group-hover:text-[var(--brand)] group-hover:grayscale-0">
+                <svg viewBox={logo.viewBox} fill="currentColor" className="h-7 w-auto">
+                  {logo.paths.map((d, j) => (
+                    <path key={j} d={d} />
+                  ))}
+                </svg>
+              </div>
+              <span className="text-sm font-medium text-foreground/50 transition-colors duration-300 group-hover:text-foreground/80">
+                {logo.name}
+              </span>
+            </div>
           ))}
         </div>
       </div>
@@ -813,7 +894,7 @@ const tiers = [
     price: "₹699",
     per: "/mo",
     tagline: "For small teams starting to standardize.",
-    features: ["Up to 3 users", "Unlimited documents", "5 templates", "Reminders", "Basic audit trail"],
+    features: ["Up to 3 users", "Unlimited documents", "5 templates", "Reminders", "Basic audit trail", "Cloud Drive Auto-Sync (Google Drive, OneDrive, Dropbox)", "Advanced Activity & Audit Logs", "Bulk Document Download"],
     cta: "Starter plan",
     href: SIGNUP_URL,
     external: false,
@@ -831,6 +912,9 @@ const tiers = [
       "Team management",
       "API + webhooks",
       "Priority support",
+      "Cloud Drive Auto-Sync (Google Drive, OneDrive, Dropbox)",
+      "Advanced Activity & Audit Logs",
+      "Bulk Document Download",
     ],
     cta: "\u00a0Business plan",
     href: SIGNUP_URL,
@@ -848,6 +932,9 @@ const tiers = [
       "SSO & custom retention",
       "Configurable verification",
       "Dedicated onboarding",
+      "Cloud Drive Auto-Sync (Google Drive, OneDrive, Dropbox)",
+      "Advanced Activity & Audit Logs",
+      "Bulk Document Download",
     ],
     cta: "Schedule a call",
     href: CALENDAR_URL,
@@ -1099,6 +1186,7 @@ function LandingPage() {
         <Workflows />
         <CustomWorkflows />
         <Features />
+        <Integrations />
         <Testimonial />
         <Pricing />
         <Faq />
