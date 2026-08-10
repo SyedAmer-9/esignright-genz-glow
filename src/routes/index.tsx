@@ -601,7 +601,7 @@ function Integrations() {
           {[...integrationLogos, ...integrationLogos].map((logo, i) => (
             <div
               key={`int-${i}`}
-              className="group flex shrink-0 flex-col items-center gap-3 px-10"
+              className="group flex shrink-0 flex-col items-center gap-3 px-16"
               style={{ ["--brand" as any]: logo.color }}
             >
               <div className="flex h-12 items-center justify-center text-foreground/40 grayscale transition-all duration-300 group-hover:text-[var(--brand)] group-hover:grayscale-0">
