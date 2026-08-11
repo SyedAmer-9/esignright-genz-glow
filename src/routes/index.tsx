@@ -25,8 +25,10 @@ import {
   DownloadCloud,
   ClipboardCheck,
   CloudDownload,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 const logoAsset = { url: "/assets/esignright-logo.png" };
 const videoThumbAsset = { url: "/assets/video-thumb.png" };
@@ -38,11 +40,227 @@ const YOUTUBE_FALLBACK_URL = "https://youtube.com/";
 const SIGNUP_URL = "https://app.esignright.com/account/signup";
 const CALENDAR_URL = "https://calendly.com/esignright/30min";
 
+// ── Ambient SaaS background music (Web Audio API, no external files) ──
+
+// Chord progression: C – G – Am – F  (uplifting, trustworthy "axis" progression)
+// Each entry: [rootHz, thirdHz, fifthHz] for the pad, plus arpeggio notes one octave up.
+const CHORDS: { pad: [number, number, number]; arp: number[] }[] = [
+  { pad: [261.63, 329.63, 392.0], arp: [523.25, 659.25, 783.99, 659.25] }, // C
+  { pad: [196.0, 246.94, 293.66], arp: [392.0, 493.88, 587.33, 493.88] }, // G
+  { pad: [220.0, 261.63, 329.63], arp: [440.0, 523.25, 659.25, 523.25] }, // Am
+  { pad: [174.61, 220.0, 261.63], arp: [349.23, 440.0, 523.25, 440.0] }, // F
+];
+const CHORD_DURATION = 4; // seconds per chord
+const BPM = 100;
+const ARP_INTERVAL = 60 / BPM / 2; // 8th notes
+
+type AudioNodes = {
+  ctx: AudioContext;
+  master: GainNode;
+  musicGain: GainNode;
+  filter: BiquadFilterNode;
+  lfo: OscillatorNode;
+  lfoGain: GainNode;
+  delay: DelayNode;
+  delayFeedback: GainNode;
+  padOscs: OscillatorNode[];
+  padGains: GainNode[];
+  arpOsc: OscillatorNode;
+  arpGain: GainNode;
+  timer: ReturnType<typeof setInterval>;
+  arpTimer: ReturnType<typeof setInterval>;
+};
+
+function useAmbientMusic() {
+  const nodesRef = useRef<AudioNodes | null>(null);
+  const [musicOn, setMusicOn] = useState(true);
+
+  const buildGraph = useCallback((): AudioNodes => {
+    const ctx = new AudioContext();
+
+    // Master bus
+    const master = ctx.createGain();
+    master.gain.value = 0.5;
+    master.connect(ctx.destination);
+
+    // Music sub-bus (allows muting independently)
+    const musicGain = ctx.createGain();
+    musicGain.gain.value = 0.18; // low background level
+
+    // Warm low-pass filter
+    const filter = ctx.createBiquadFilter();
+    filter.type = "lowpass";
+    filter.frequency.value = 1800;
+    filter.Q.value = 0.7;
+
+    // LFO for gentle filter "breathing"
+    const lfo = ctx.createOscillator();
+    lfo.type = "sine";
+    lfo.frequency.value = 0.12; // very slow
+    const lfoGain = ctx.createGain();
+    lfoGain.gain.value = 400;
+    lfo.connect(lfoGain);
+    lfoGain.connect(filter.frequency);
+    lfo.start();
+
+    // Delay for spaciousness
+    const delay = ctx.createDelay(1.0);
+    delay.delayTime.value = 0.38;
+    const delayFeedback = ctx.createGain();
+    delayFeedback.gain.value = 0.35;
+    delay.connect(delayFeedback);
+    delayFeedback.connect(delay);
+
+    // Wire: musicGain → filter → master (+ delay → master)
+    musicGain.connect(filter);
+    filter.connect(master);
+    filter.connect(delay);
+    delay.connect(master);
+
+    // Pad oscillators (3 voices, triangle wave for warmth)
+    const padOscs: OscillatorNode[] = [];
+    const padGains: GainNode[] = [];
+    for (let i = 0; i < 3; i++) {
+      const osc = ctx.createOscillator();
+      osc.type = "triangle";
+      const g = ctx.createGain();
+      g.gain.value = 0;
+      osc.connect(g);
+      g.connect(musicGain);
+      osc.start();
+      padOscs.push(osc);
+      padGains.push(g);
+    }
+
+    // Arpeggio voice (sine bell)
+    const arpOsc = ctx.createOscillator();
+    arpOsc.type = "sine";
+    const arpGain = ctx.createGain();
+    arpGain.gain.value = 0;
+    arpOsc.connect(arpGain);
+    arpGain.connect(musicGain);
+    arpOsc.start();
+
+    let chordIndex = 0;
+    let arpStep = 0;
+
+    const setPadChord = (chord: (typeof CHORDS)[number]) => {
+      const now = ctx.currentTime;
+      chord.pad.forEach((freq, i) => {
+        const osc = padOscs[i];
+        const g = padGains[i];
+        // smooth transition
+        g.gain.cancelScheduledValues(now);
+        g.gain.setValueAtTime(g.gain.value, now);
+        g.gain.linearRampToValueAtTime(0, now + 0.08);
+        g.gain.linearRampToValueAtTime(0.28, now + 0.8);
+        // detune slightly for richness
+        osc.frequency.setValueAtTime(freq, now + 0.08);
+      });
+    };
+
+    const playArpNote = (freq: number) => {
+      const now = ctx.currentTime;
+      arpOsc.frequency.setValueAtTime(freq, now);
+      arpGain.gain.cancelScheduledValues(now);
+      arpGain.gain.setValueAtTime(0, now);
+      arpGain.gain.linearRampToValueAtTime(0.22, now + 0.01);
+      arpGain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+    };
+
+    // Set initial chord
+    setPadChord(CHORDS[0]);
+
+    // Chord progression timer
+    const timer = setInterval(() => {
+      chordIndex = (chordIndex + 1) % CHORDS.length;
+      setPadChord(CHORDS[chordIndex]);
+    }, CHORD_DURATION * 1000);
+
+    // Arpeggio timer
+    const arpTimer = setInterval(() => {
+      const chord = CHORDS[chordIndex];
+      const note = chord.arp[arpStep % chord.arp.length];
+      playArpNote(note);
+      arpStep++;
+    }, ARP_INTERVAL * 1000);
+
+    // Smooth master fade-in
+    master.gain.setValueAtTime(0, ctx.currentTime);
+    master.gain.linearRampToValueAtTime(0.5, ctx.currentTime + 1.5);
+
+    return {
+      ctx,
+      master,
+      musicGain,
+      filter,
+      lfo,
+      lfoGain,
+      delay,
+      delayFeedback,
+      padOscs,
+      padGains,
+      arpOsc,
+      arpGain,
+      timer,
+      arpTimer,
+    };
+  }, []);
+
+  const startMusic = useCallback(() => {
+    if (nodesRef.current) return;
+    try {
+      nodesRef.current = buildGraph();
+    } catch {
+      // AudioContext not available (SSR or unsupported)
+    }
+  }, [buildGraph]);
+
+  const stopMusic = useCallback(() => {
+    const nodes = nodesRef.current;
+    if (!nodes) return;
+    clearInterval(nodes.timer);
+    clearInterval(nodes.arpTimer);
+    nodes.padOscs.forEach((o) => o.stop());
+    nodes.lfo.stop();
+    nodes.arpOsc.stop();
+    nodes.ctx.close().catch(() => {});
+    nodesRef.current = null;
+  }, []);
+
+  const toggleMusic = useCallback(() => {
+    setMusicOn((prev) => {
+      const next = !prev;
+      const nodes = nodesRef.current;
+      if (nodes) {
+        const now = nodes.ctx.currentTime;
+        nodes.musicGain.gain.cancelScheduledValues(now);
+        nodes.musicGain.gain.setValueAtTime(nodes.musicGain.gain.value, now);
+        nodes.musicGain.gain.linearRampToValueAtTime(
+          next ? 0.18 : 0,
+          now + 0.3,
+        );
+      }
+      return next;
+    });
+  }, []);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      stopMusic();
+    };
+  }, [stopMusic]);
+
+  return { musicOn, toggleMusic, startMusic, stopMusic };
+}
+
 function HeroVideo() {
   const [playing, setPlaying] = useState(false);
   const [url, setUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { musicOn, toggleMusic, startMusic, stopMusic } = useAmbientMusic();
 
   async function handlePlay() {
     if (loading) return;
@@ -56,6 +274,17 @@ function HeroVideo() {
       setUrl(data.signedUrl);
     }
     setPlaying(true);
+    // Start ambient music with the video
+    startMusic();
+  }
+
+  function handleVideoEnded() {
+    setPlaying(false);
+    stopMusic();
+  }
+
+  function handleVideoPause() {
+    // Only stop music if the user actually reached the end; allow manual pause to keep music
   }
 
   useEffect(() => {
@@ -91,6 +320,8 @@ function HeroVideo() {
             controls
             playsInline
             preload="none"
+            onEnded={handleVideoEnded}
+            onPause={handleVideoPause}
             className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
               playing ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
@@ -114,6 +345,23 @@ function HeroVideo() {
               </span>
             </button>
           </div>
+        )}
+
+        {/* Music toggle — visible only while video is playing */}
+        {playing && (
+          <button
+            type="button"
+            onClick={toggleMusic}
+            className="absolute bottom-4 right-4 z-10 inline-flex items-center gap-2 rounded-full bg-black/60 px-3 py-2 text-xs font-medium text-white backdrop-blur-sm transition hover:bg-black/80"
+            aria-label={musicOn ? "Mute background music" : "Unmute background music"}
+          >
+            {musicOn ? (
+              <Volume2 className="h-4 w-4" />
+            ) : (
+              <VolumeX className="h-4 w-4" />
+            )}
+            {musicOn ? "Music on" : "Music off"}
+          </button>
         )}
       </div>
 
