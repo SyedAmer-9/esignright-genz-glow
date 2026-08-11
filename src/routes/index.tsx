@@ -68,9 +68,7 @@ type AudioNodes = {
   arpOsc: OscillatorNode;
   arpGain: GainNode;
   timer: ReturnType<typeof setInterval>;
-  chordIndex: number;
-  arpStep: number;
-  raf: number;
+  arpTimer: ReturnType<typeof setInterval>;
 };
 
 function useAmbientMusic() {
