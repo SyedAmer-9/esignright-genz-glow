@@ -25,8 +25,10 @@ import {
   DownloadCloud,
   ClipboardCheck,
   CloudDownload,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 const logoAsset = { url: "/assets/esignright-logo.png" };
 const videoThumbAsset = { url: "/assets/video-thumb.png" };
