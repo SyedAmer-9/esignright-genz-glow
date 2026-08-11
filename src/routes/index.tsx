@@ -220,6 +220,7 @@ function useAmbientMusic() {
     const nodes = nodesRef.current;
     if (!nodes) return;
     clearInterval(nodes.timer);
+    clearInterval(nodes.arpTimer);
     nodes.padOscs.forEach((o) => o.stop());
     nodes.lfo.stop();
     nodes.arpOsc.stop();
