@@ -203,9 +203,7 @@ function useAmbientMusic() {
       arpOsc,
       arpGain,
       timer,
-      chordIndex,
-      arpStep,
-      raf: 0,
+      arpTimer,
     };
   }, []);
 
